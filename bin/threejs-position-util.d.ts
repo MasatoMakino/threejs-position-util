@@ -46,18 +46,6 @@ export declare class PositionUtil {
      */
     static getROfGlobe(vec: Vector3): number;
     /**
-     * 直交座標から極座標へ変換する
-     * @param vector3
-     * @returns {Polar}
-     */
-    static vector3ToPolar(vector3: Vector3): Polar;
-    /**
-     * 極座標から直交座標へ変換する
-     * @param polar
-     * @returns {Vector3}
-     */
-    static polarToVector3(polar: Polar): Vector3;
-    /**
      * 読み込み直後のメッシュの原点をずらす。
      * ObjLoaderなどで読み込んだ直後のMeshは、全てGeometryの原点が(0,0,0)になっているため回転や拡大が意図通りに動かない
      * 中心点を任意の場所にずらすことで操作が容易になる。
@@ -66,25 +54,5 @@ export declare class PositionUtil {
      * @param pos meshの中心点になる座標
      */
     static shiftMesh(mesh: Mesh, pos: Vector3): void;
-}
-/**
- * 地球の緯度経度ベース極座標オブジェクト
- */
-export declare class Polar {
-    longitude: number;
-    latitude: number;
-    static readonly PI_2: number;
-    /**
-     * コンストラクタ
-     * @param lng 経度　単位ラジアン　180度 = Math.PI
-     * @param lat 緯度　単位ラジアン
-     */
-    constructor(lng?: number, lat?: number);
-    /**
-     * 値の正規化を行う
-     * 回転数のデータは失われる。
-     */
-    normalize(): void;
-    clone(): Polar;
 }
 //# sourceMappingURL=threejs-position-util.d.ts.map
