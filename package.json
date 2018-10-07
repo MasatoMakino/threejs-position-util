@@ -1,0 +1,32 @@
+{
+  "name": "threejs-position-util",
+  "version": "0.0.1",
+  "main": "./bin/threejs-position-util.js",
+  "types": "./bin/threejs-position-util.d.ts",
+  "repository": "https://MasatoMakino@github.com/MasatoMakino/threejs-position-util.git",
+  "author": "MasatoMakino <unagiinu.g@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "threejs"
+  ],
+  "dependencies": {
+    "@types/three": "^0.92.2"
+  },
+  "devDependencies": {
+    "cpx": "^1.5.0",
+    "http-server": "^0.11.1",
+    "husky": "^1.1.0",
+    "prettier": "^1.14.3",
+    "three": "^0.97.0",
+    "typescript": "^3.1.1"
+  },
+  "scripts": {
+    "build": "tsc && npm run prettier:src",
+    "prettier:src": "prettier --write './!(bin)/**/*.{js,ts,json}' "
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run build"
+    }
+  }
+}
