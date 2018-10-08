@@ -3,14 +3,42 @@ import * as THREE from "three";
 
 import Spherical = THREE.Spherical;
 import Vector3 = THREE.Vector3;
+import Scene = THREE.Scene;
+import Mesh = THREE.Mesh;
 
 describe("座標ユーティリティ", () => {
   // シーンを作成
-  const scene = new THREE.Scene();
+  const scene = new Scene();
 
-  // test("空のテスト", () => {
-  //     expect(false).toEqual(false);
-  // });
+  test("ジオメトリ中心のワールド座標取得", () => {
+    const geo = new THREE.SphereGeometry(10);
+    const mesh = new Mesh(geo);
+    PositionUtil.shiftMesh(mesh, new Vector3(-10, -10, -10));
+    mesh.position.set(10, 10, 10);
+    const container = new THREE.Object3D();
+    container.position.set(10, 10, 10);
+    container.add(mesh);
+    scene.add(container);
+
+    const vec = PositionUtil.getGeometryCenterInWorld(mesh);
+    expect(vec).toEqual(new Vector3(30, 30, 30));
+  });
+
+  test("ジオメトリ中心の取得", () => {
+    const geo = new THREE.SphereGeometry(10);
+    const mesh = new Mesh(geo);
+    PositionUtil.shiftMesh(mesh, new Vector3(-10, -10, -10));
+    mesh.position.set(10, 10, 10);
+    const container = new THREE.Object3D();
+    container.position.set(10, 10, 10);
+    container.add(mesh);
+    scene.add(container);
+
+    const vec = PositionUtil.getGeometryCenterInLocal(mesh);
+
+    //親Object3Dの移動やmeshの移動は無視して、ジオメトリの中心位置だけを取得する。
+    expect(vec).toEqual(new Vector3(10, 10, 10));
+  });
 });
 
 /*
