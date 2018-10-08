@@ -58,6 +58,7 @@ export class PositionUtil {
         const vector = vec.clone().project(camera);
         vector.x = ((vector.x + 1) * canvasW) / 2;
         vector.y = ((-vector.y + 1) * canvasH) / 2;
+        vector.z = 0;
         return vector;
     }
     /**

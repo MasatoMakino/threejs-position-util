@@ -5,10 +5,17 @@ import Spherical = THREE.Spherical;
 import Vector3 = THREE.Vector3;
 import Scene = THREE.Scene;
 import Mesh = THREE.Mesh;
+import { Geometry } from "three";
+import { Camera } from "three";
 
 describe("座標ユーティリティ", () => {
   // シーンを作成
   const scene = new Scene();
+  const W = 1920;
+  const H = 1080;
+  const camera = new THREE.PerspectiveCamera(45, W / H, 1, 10000);
+  camera.position.set(0, 0, 1000);
+  scene.add(camera);
 
   test("ジオメトリ中心のワールド座標取得", () => {
     const geo = new THREE.SphereGeometry(10);
@@ -38,6 +45,38 @@ describe("座標ユーティリティ", () => {
 
     //親Object3Dの移動やmeshの移動は無視して、ジオメトリの中心位置だけを取得する。
     expect(vec).toEqual(new Vector3(10, 10, 10));
+  });
+
+  test("スクリーン座標の取得", () => {
+    const geo = new THREE.SphereGeometry(10);
+
+    const addMesh = (
+      geo: Geometry,
+      scene: Scene,
+      camera: Camera,
+      pos: Vector3
+    ) => {
+      const mesh = new THREE.Mesh(geo);
+      mesh.position.set(pos.x, pos.y, pos.z);
+      scene.add(mesh);
+      return PositionUtil.get2DPositionWithMesh(mesh, camera, W, H);
+    };
+
+    const vec0 = addMesh(geo, scene, camera, new Vector3(0, 0, 0));
+    const vec1 = addMesh(geo, scene, camera, new Vector3(-200, 200, 0));
+    const vec2 = addMesh(geo, scene, camera, new Vector3(350, -150, 0));
+    const vec3 = addMesh(geo, scene, camera, new Vector3(350, -150, -600));
+
+    expect(vec0).toEqual(new Vector3(W / 2, H / 2, 0));
+
+    expect(vec1.x).toBeCloseTo(699.2649352637056);
+    expect(vec1.y).toBeCloseTo(279.26493526370575);
+
+    expect(vec2.x).toBeCloseTo(1416.286363288515);
+    expect(vec2.y).toBeCloseTo(735.5512985522207);
+
+    expect(vec3.x).toBeCloseTo(1245.1789770553219);
+    expect(vec3.y).toBeCloseTo(662.2195615951379);
   });
 });
 
