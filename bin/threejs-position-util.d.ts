@@ -1,7 +1,5 @@
 import { Vector3, Mesh, Camera, Geometry } from "three";
 /**
- * Created by makinomasato on 2016/05/21.
- *
  * OBJLoaderなどで読み込んだジオメトリとメッシュを操作するクラスです。
  */
 export declare class PositionUtil {

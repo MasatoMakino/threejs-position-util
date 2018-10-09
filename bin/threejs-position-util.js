@@ -1,7 +1,5 @@
 import { Vector3, Matrix4 } from "three";
 /**
- * Created by makinomasato on 2016/05/21.
- *
  * OBJLoaderなどで読み込んだジオメトリとメッシュを操作するクラスです。
  */
 export class PositionUtil {
