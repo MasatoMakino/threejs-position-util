@@ -1,11 +1,11 @@
 import { Vector3, Matrix4 } from "three";
 /**
- * OBJLoaderなどで読み込んだジオメトリとメッシュを操作するクラスです。
+ * Loaderで読み込んだジオメトリの位置の計測、ジオメトリのシフト操作をするクラスです。
  */
 export class PositionUtil {
     /**
-     * メッシュ内のジオメトリの重心座標を求める
-     * 原点はワールド座標
+     * メッシュ内のジオメトリの重心座標を求める。
+     * 原点はワールド座標。
      *
      * @param mesh
      * @returns {Vector3}
@@ -18,7 +18,7 @@ export class PositionUtil {
         return vec.applyMatrix4(mesh.matrixWorld);
     }
     /**
-     * メッシュ内のジオメトリの重心座標を求める
+     * メッシュ内のジオメトリの重心座標を求める。
      * メッシュを原点とする座標を返す。
      * （例えばメッシュ原点を中心とする球体ジオメトリがある場合はVector3(0,0,0)を返す）
      *
@@ -29,8 +29,8 @@ export class PositionUtil {
         return this.getCenter(mesh.geometry);
     }
     /**
-     * ジオメトリの重心座標を求める
-     * 座標原点はジオメトリを格納するメッシュの原点
+     * ジオメトリの重心座標を求める。
+     * 座標原点はジオメトリを格納するメッシュの原点。
      *
      * @param {Geometry} geo
      * @returns {Vector3}
@@ -45,7 +45,7 @@ export class PositionUtil {
         return position;
     }
     /**
-     * グローバル座標から2Dスクリーン座標を取得するメソッド
+     * グローバル座標から2Dスクリーン座標を取得する。
      * @param {Vector3} vec
      * @param {Camera} camera
      * @param {number} canvasW
@@ -60,7 +60,7 @@ export class PositionUtil {
         return vector;
     }
     /**
-     * メッシュから2Dスクリーン座標を取得するメソッド
+     * メッシュから2Dスクリーン座標を取得する。
      * @param {Mesh} mesh
      * @param {Camera} camera
      * @param {number} canvasW
@@ -72,7 +72,7 @@ export class PositionUtil {
         return PositionUtil.get2DPosition(p, camera, canvasW, canvasH);
     }
     /**
-     * 直交座標から三次元極座標の半径を取得する
+     * 直交座標から三次元極座標の半径を取得する。
      * @param {Vector3} vec
      * @returns {number}
      */
