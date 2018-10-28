@@ -46,6 +46,8 @@ import { PositionUtil } from "threejs-position-util";
 
 ### Functions
 
+[API documentation](https://masatomakino.github.io/threejs-position-util/api/classes/_threejs_position_util_.positionutil.html)
+
 Call static functions in PositionUtil class.
 
 ```js
