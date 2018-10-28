@@ -46,8 +46,3 @@ const addMesh = (geo, scene, camera, pos) => {
  * DOMContentLoaded以降に初期化処理を実行する
  */
 window.onload = onDomContentsLoaded;
-// if (document.readyState !== "loading") {
-//     onDomContentsLoaded();
-// } else {
-//     document.addEventListener("DOMContentLoaded", onDomContentsLoaded);
-// }
