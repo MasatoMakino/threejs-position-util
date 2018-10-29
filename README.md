@@ -4,6 +4,8 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/fec771399093f1315350/maintainability)](https://codeclimate.com/github/MasatoMakino/threejs-position-util/maintainability)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
+[Github repository](https://github.com/MasatoMakino/threejs-position-util)
+
 measuring geometry positions for three.js
 
 ## Demo
