@@ -1,4 +1,4 @@
-import { Vector3, Mesh, Camera, Geometry } from "three";
+import { Vector3, Mesh, Camera, Geometry, BufferGeometry } from "three";
 /**
  * Loaderで読み込んだジオメトリの位置の計測、ジオメトリのシフト操作をするクラスです。
  */
@@ -23,11 +23,9 @@ export declare class PositionUtil {
     /**
      * ジオメトリの重心座標を求める。
      * 座標原点はジオメトリを格納するメッシュの原点。
-     *
-     * @param {Geometry} geo
-     * @returns {Vector3}
+     * @param geo
      */
-    static getCenter(geo: Geometry): Vector3;
+    static getCenter(geo: Geometry | BufferGeometry): Vector3;
     /**
      * グローバル座標から2Dスクリーン座標を取得する。
      * @param {Vector3} vec

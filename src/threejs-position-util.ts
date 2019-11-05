@@ -42,9 +42,7 @@ export class PositionUtil {
   /**
    * ジオメトリの重心座標を求める。
    * 座標原点はジオメトリを格納するメッシュの原点。
-   *
-   * @param {Geometry} geo
-   * @returns {Vector3}
+   * @param geo
    */
   public static getCenter(geo: Geometry | BufferGeometry): Vector3 {
     geo.computeBoundingBox();
