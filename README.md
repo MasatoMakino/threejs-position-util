@@ -11,6 +11,7 @@ measuring geometry positions for three.js
 ## Demo
 
 View [Demo Page](https://masatomakino.github.io/threejs-position-util/demo.html) and open console.
+
 ```
 Vector3
 x: 960
@@ -18,7 +19,7 @@ y: 540
 z: 0
 ```
 
-threejs-position-util output a geometry position on screen. 
+threejs-position-util output a geometry position on screen.
 
 ## Getting Started
 
@@ -48,7 +49,7 @@ import { PositionUtil } from "threejs-position-util";
 
 ### Functions
 
-[API documentation](https://masatomakino.github.io/threejs-position-util/api/classes/_threejs_position_util_.positionutil.html)
+[API documentation](https://masatomakino.github.io/threejs-position-util/api/)
 
 Call static functions in PositionUtil class.
 
@@ -60,7 +61,7 @@ PositionUtil.get2DPositionWithMesh(mesh, camera, W, H);
 
 Functions return a position as THREE.Vector3.
 
-see also [demo script](https://masatomakino.github.io/threejs-position-util/main.js).
+see also [demo page](https://masatomakino.github.io/threejs-position-util/demo/index.html).
 
 ## License
 
