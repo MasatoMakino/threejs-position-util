@@ -106,7 +106,7 @@ export class PositionUtil {
   }
 
   /**
-   * 読み込み直後のメッシュとジオメトリの位置をずらす。
+   * メッシュとジオメトリの位置をずらす。
    * メッシュは移動し、ジオメトリは見かけ上同じ位置を維持する。
    *
    * ObjLoaderなどで読み込んだ直後のMeshは、全てGeometryの原点が(0,0,0)になっているため回転や拡大が意図通りに動かない。
@@ -121,7 +121,7 @@ export class PositionUtil {
     mesh.geometry.applyMatrix(
       new Matrix4().makeTranslation(-position.x, -position.y, -position.z)
     );
-    //メッシュを指定された中心点に移動する
-    mesh.position.set(position.x, position.y, position.z);
+    //メッシュを指定された量ずらす
+    mesh.position.add(position);
   }
 }
