@@ -1,6 +1,6 @@
 {
   "name": "threejs-position-util",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "main": "./bin/threejs-position-util.js",
   "types": "./bin/threejs-position-util.d.ts",
   "repository": "https://MasatoMakino@github.com/MasatoMakino/threejs-position-util.git",
