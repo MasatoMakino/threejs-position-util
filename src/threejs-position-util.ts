@@ -36,7 +36,7 @@ export class PositionUtil {
    * @returns {Vector3}
    */
   public static getGeometryCenterInLocal(mesh: Mesh): Vector3 {
-    return this.getCenter(mesh.geometry as Geometry);
+    return this.getCenter(mesh.geometry);
   }
 
   /**
