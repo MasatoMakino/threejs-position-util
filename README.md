@@ -39,8 +39,6 @@ npm install https://github.com/MasatoMakino/threejs-position-util.git --save-dev
 
 ### Import
 
-threejs-position-util is composed of ES6 modules and TypeScript d.ts files.
-
 At first, import a class.
 
 ```js
@@ -61,7 +59,7 @@ PositionUtil.get2DPositionWithMesh(mesh, camera, W, H);
 
 Functions return a position as THREE.Vector3.
 
-see also [demo page](https://masatomakino.github.io/threejs-position-util/demo/index.html).
+see also [demo page](https://masatomakino.github.io/threejs-position-util/demo/).
 
 ## License
 

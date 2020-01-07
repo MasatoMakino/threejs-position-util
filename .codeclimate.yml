@@ -1,4 +1,4 @@
 exclude_paths:
-- bin/**/*
-- docs/bundle.js
-- docs/api/**/*
+  - docs/**/*
+  - lib/**/*
+  - esm/**/*

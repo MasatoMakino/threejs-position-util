@@ -1,5 +1,5 @@
-bin/
+lib/
+esm/
 coverage/
-docs/api/
-docs/demo/**/*.js
+docs/
 node_modules/

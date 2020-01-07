@@ -1,4 +1,4 @@
-import { PositionUtil } from "../bin/threejs-position-util";
+import { PositionUtil } from "../lib/threejs-position-util";
 import * as THREE from "three";
 
 const W = 1920;

@@ -1,25 +1,21 @@
-const { dest, parallel, series, src, watch } = require("gulp");
+const { parallel, series } = require("gulp");
 
 const doc = require("gulptask-tsdoc").get();
 const server = require("gulptask-dev-server").get("./docs/demo");
 
-const copyGlob = "./demoSrc/**/*.{html,png,jpg,jpeg}";
-const copy = () => {
-  return src(copyGlob, { base: "./demoSrc/" }).pipe(dest("./docs/demo"));
-};
+const { bundleDemo, watchDemo } = require("gulptask-demo-page").get({
+  body: `<canvas id="webgl-canvas" width="1920" height="1080"></canvas>`
+});
+const { tsc, tscClean, watchTsc } = require("gulptask-tsc").get({
+  projects: ["tsconfig.json", "tsconfig.esm.json"]
+});
 
-const { bundleDevelopment, watchBundle } = require("gulptask-webpack")(
-  "./webpack.config.js"
-);
-const { tsc, tscClean, watchTsc } = require("gulptask-tsc").get();
-
-const watchTasks = cb => {
-  watchBundle();
+const watchTasks = async () => {
+  watchDemo();
   watchTsc();
-  watch(copyGlob, copy);
-  cb();
 };
 
+exports.tsc = series(tsc);
 exports.start_dev = series(watchTasks, server);
-exports.build = series(tsc, copy, bundleDevelopment, doc);
-exports.build_clean = series(tscClean, copy, bundleDevelopment, doc);
+exports.build = series(tsc, parallel(bundleDemo, doc));
+exports.build_clean = series(tscClean, parallel(bundleDemo, doc));

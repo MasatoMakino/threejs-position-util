@@ -1,8 +1,13 @@
 {
   "name": "threejs-position-util",
-  "version": "0.1.5",
-  "main": "./bin/threejs-position-util.js",
-  "types": "./bin/threejs-position-util.d.ts",
+  "version": "0.2.0",
+  "main": "./lib/threejs-position-util.js",
+  "types": "./lib/threejs-position-util.d.ts",
+  "module": "./esm/threejs-position-util.js",
+  "files": [
+    "lib",
+    "esm"
+  ],
   "repository": "https://MasatoMakino@github.com/MasatoMakino/threejs-position-util.git",
   "author": "MasatoMakino <unagiinu.g@gmail.com>",
   "license": "MIT",
@@ -10,24 +15,24 @@
     "threejs"
   ],
   "dependencies": {},
+  "peerDependencies": {
+    "three": "^0.112.1"
+  },
   "devDependencies": {
-    "@babel/core": "^7.7.5",
-    "@babel/preset-env": "^7.7.5",
-    "@types/jest": "^24.0.23",
-    "babel-loader": "^8.0.6",
+    "@types/jest": "^24.0.25",
     "gulp": "^4.0.2",
+    "gulptask-demo-page": "https://github.com/MasatoMakino/gulptask-demo-page.git",
     "gulptask-dev-server": "https://github.com/MasatoMakino/gulptask-dev-server.git",
     "gulptask-tsc": "https://github.com/MasatoMakino/gulptask-tsc.git",
     "gulptask-tsdoc": "https://github.com/MasatoMakino/gulptask-tsdoc.git",
-    "gulptask-webpack": "https://github.com/MasatoMakino/gulptask-webpack.git",
-    "husky": "^3.1.0",
+    "husky": "^4.0.0",
     "jest": "^24.9.0",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
-    "three": "^0.111.0",
-    "ts-jest": "^24.2.0",
+    "three": "^0.112.1",
+    "ts-jest": "^24.3.0",
     "ts-node": "^8.5.4",
-    "typescript": "^3.7.3"
+    "typescript": "^3.7.4"
   },
   "scripts": {
     "test": "jest --coverage",
