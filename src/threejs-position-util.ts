@@ -1,10 +1,10 @@
 import {
-  Vector3,
-  Mesh,
+  BufferGeometry,
   Camera,
   Geometry,
-  BufferGeometry,
-  Matrix4
+  Matrix4,
+  Mesh,
+  Vector3,
 } from "three";
 
 /**
@@ -118,7 +118,7 @@ export class PositionUtil {
   public static shiftMesh(mesh: Mesh, pos: Vector3): void {
     let position = pos.clone();
     //ジオメトリをずらす
-    mesh.geometry.applyMatrix(
+    mesh.geometry.applyMatrix4(
       new Matrix4().makeTranslation(-position.x, -position.y, -position.z)
     );
     //メッシュを指定された量ずらす

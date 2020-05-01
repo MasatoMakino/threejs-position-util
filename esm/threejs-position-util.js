@@ -1,4 +1,4 @@
-import { Vector3, Matrix4 } from "three";
+import { Matrix4, Vector3 } from "three";
 /**
  * Loaderで読み込んだジオメトリの位置の計測、ジオメトリのシフト操作をするクラスです。
  */
@@ -90,7 +90,7 @@ export class PositionUtil {
     static shiftMesh(mesh, pos) {
         let position = pos.clone();
         //ジオメトリをずらす
-        mesh.geometry.applyMatrix(new Matrix4().makeTranslation(-position.x, -position.y, -position.z));
+        mesh.geometry.applyMatrix4(new Matrix4().makeTranslation(-position.x, -position.y, -position.z));
         //メッシュを指定された量ずらす
         mesh.position.add(position);
     }

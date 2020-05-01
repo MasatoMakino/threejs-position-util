@@ -1,6 +1,6 @@
 {
   "name": "threejs-position-util",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "./lib/threejs-position-util.js",
   "types": "./lib/threejs-position-util.d.ts",
   "module": "./esm/threejs-position-util.js",
@@ -19,20 +19,20 @@
     "three": "^0.112.1"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.25",
+    "@types/jest": "^25.2.1",
     "gulp": "^4.0.2",
     "gulptask-demo-page": "https://github.com/MasatoMakino/gulptask-demo-page.git",
     "gulptask-dev-server": "https://github.com/MasatoMakino/gulptask-dev-server.git",
     "gulptask-tsc": "https://github.com/MasatoMakino/gulptask-tsc.git",
     "gulptask-tsdoc": "https://github.com/MasatoMakino/gulptask-tsdoc.git",
-    "husky": "^4.0.0",
-    "jest": "^24.9.0",
-    "prettier": "^1.19.1",
+    "husky": "^4.2.5",
+    "jest": "^25.5.3",
+    "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
-    "three": "^0.112.1",
-    "ts-jest": "^24.3.0",
-    "ts-node": "^8.5.4",
-    "typescript": "^3.7.4"
+    "three": "^0.116.0",
+    "ts-jest": "^25.4.0",
+    "ts-node": "^8.9.1",
+    "typescript": "^3.8.3"
   },
   "scripts": {
     "test": "jest --coverage",
