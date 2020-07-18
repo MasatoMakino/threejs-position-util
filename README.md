@@ -11,7 +11,7 @@ measuring geometry positions for three.js
 
 ## Demo
 
-View [Demo Page](https://masatomakino.github.io/threejs-position-util/demo.html) and open console.
+View [Demo Page](https://masatomakino.github.io/threejs-position-util/demo/) and open console.
 
 ```
 Vector3
