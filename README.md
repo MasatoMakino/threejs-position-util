@@ -5,7 +5,7 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/fec771399093f1315350/test_coverage)](https://codeclimate.com/github/MasatoMakino/threejs-position-util/test_coverage)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
-[Github repository](https://github.com/MasatoMakino/threejs-position-util)
+[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=MasatoMakino&repo=threejs-position-util&show_owner=true)](https://github.com/MasatoMakino/threejs-position-util)
 
 measuring geometry positions for three.js
 
