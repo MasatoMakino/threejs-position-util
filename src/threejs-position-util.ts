@@ -1,11 +1,4 @@
-import {
-  BufferGeometry,
-  Camera,
-  Geometry,
-  Matrix4,
-  Mesh,
-  Vector3,
-} from "three";
+import {BufferGeometry, Camera, Matrix4, Mesh, Vector3,} from "three";
 
 /**
  * Loaderで読み込んだジオメトリの位置の計測、ジオメトリのシフト操作をするクラスです。
@@ -44,7 +37,7 @@ export class PositionUtil {
    * 座標原点はジオメトリを格納するメッシュの原点。
    * @param geo
    */
-  public static getCenter(geo: Geometry | BufferGeometry): Vector3 {
+  public static getCenter(geo: BufferGeometry): Vector3 {
     geo.computeBoundingBox();
     const boundingBox = geo.boundingBox;
 

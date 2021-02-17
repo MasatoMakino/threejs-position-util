@@ -1,16 +1,15 @@
-import { PositionUtil } from "../src/threejs-position-util";
-
 import {
-  Geometry,
+  BufferGeometry,
   Camera,
-  Vector3,
   Mesh,
-  Scene,
-  Spherical,
+  Object3D,
   PerspectiveCamera,
+  Scene,
   SphereGeometry,
-  Object3D
+  Spherical,
+  Vector3
 } from "three";
+import {PositionUtil} from "../src/threejs-position-util";
 
 describe("座標ユーティリティ", () => {
   // シーンを作成
@@ -77,7 +76,7 @@ describe("座標ユーティリティ", () => {
     const geo = new SphereGeometry(10);
 
     const addMesh = (
-      geo: Geometry,
+      geo: BufferGeometry,
       scene: Scene,
       camera: Camera,
       pos: Vector3
