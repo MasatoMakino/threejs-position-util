@@ -1,9 +1,9 @@
 {
   "name": "threejs-position-util",
   "version": "0.2.2",
-  "main": "./lib/threejs-position-util.js",
-  "types": "./lib/threejs-position-util.d.ts",
-  "module": "./esm/threejs-position-util.js",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "module": "./esm/index.js",
   "files": [
     "lib",
     "esm"
