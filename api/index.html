@@ -1,0 +1,54 @@
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>threejs-position-util</title><meta name="description" content="Documentation for threejs-position-util"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">threejs-position-util</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>threejs-position-util</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<a href="#threejs-position-util" id="threejs-position-util" style="color: inherit; text-decoration: none;">
+  <h1>threejs-position-util</h1>
+</a>
+<p><a href="https://codeclimate.com/github/MasatoMakino/threejs-position-util/maintainability"><img src="https://api.codeclimate.com/v1/badges/fec771399093f1315350/maintainability" alt="Maintainability"></a>
+<a href="https://codeclimate.com/github/MasatoMakino/threejs-position-util/test_coverage"><img src="https://api.codeclimate.com/v1/badges/fec771399093f1315350/test_coverage" alt="Test Coverage"></a>
+<a href="LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="MIT License"></a></p>
+<p><a href="https://github.com/MasatoMakino/threejs-position-util"><img src="https://github-readme-stats.vercel.app/api/pin/?username=MasatoMakino&repo=threejs-position-util&show_owner=true" alt="ReadMe Card"></a></p>
+<p>measuring geometry positions for three.js</p>
+
+<a href="#demo" id="demo" style="color: inherit; text-decoration: none;">
+  <h2>Demo</h2>
+</a>
+<p>View <a href="https://masatomakino.github.io/threejs-position-util/demo/">Demo Page</a> and open console.</p>
+<pre><code><span class="hl-0">Vector3</span><br/><span class="hl-1">x</span><span class="hl-2">: </span><span class="hl-3">960</span><br/><span class="hl-1">y</span><span class="hl-2">: </span><span class="hl-3">540</span><br/><span class="hl-1">z</span><span class="hl-2">: </span><span class="hl-3">0</span>
+</code></pre>
+<p>threejs-position-util output a geometry position on screen.</p>
+
+<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+  <h2>Getting Started</h2>
+</a>
+
+<a href="#install" id="install" style="color: inherit; text-decoration: none;">
+  <h3>Install</h3>
+</a>
+<p>threejs-position-util depend on <a href="https://threejs.org/">three.js</a></p>
+<pre><code class="language-bash"><span class="hl-2">npm install three --save-dev</span>
+</code></pre>
+<p>and</p>
+<pre><code class="language-bash"><span class="hl-2">npm install https://github.com/MasatoMakino/threejs-position-util.git --save-dev</span>
+</code></pre>
+
+<a href="#import" id="import" style="color: inherit; text-decoration: none;">
+  <h3>Import</h3>
+</a>
+<p>At first, import a class.</p>
+<pre><code class="language-js"><span class="hl-4">import</span><span class="hl-2"> { </span><span class="hl-0">PositionUtil</span><span class="hl-2"> } </span><span class="hl-4">from</span><span class="hl-2"> </span><span class="hl-5">&quot;threejs-position-util&quot;</span><span class="hl-2">;</span>
+</code></pre>
+
+<a href="#functions" id="functions" style="color: inherit; text-decoration: none;">
+  <h3>Functions</h3>
+</a>
+<p><a href="https://masatomakino.github.io/threejs-position-util/api/">API documentation</a></p>
+<p>Call static functions in PositionUtil class.</p>
+<pre><code class="language-js"><span class="hl-0">PositionUtil</span><span class="hl-2">.</span><span class="hl-6">getGeometryCenterInWorld</span><span class="hl-2">(</span><span class="hl-0">mesh</span><span class="hl-2">);</span><br/><span class="hl-0">PositionUtil</span><span class="hl-2">.</span><span class="hl-6">getGeometryCenterInLocal</span><span class="hl-2">(</span><span class="hl-0">mesh</span><span class="hl-2">);</span><br/><span class="hl-0">PositionUtil</span><span class="hl-2">.</span><span class="hl-6">get2DPositionWithMesh</span><span class="hl-2">(</span><span class="hl-0">mesh</span><span class="hl-2">, </span><span class="hl-0">camera</span><span class="hl-2">, </span><span class="hl-7">W</span><span class="hl-2">, </span><span class="hl-7">H</span><span class="hl-2">);</span>
+</code></pre>
+<p>Functions return a position as THREE.Vector3.</p>
+<p>see also <a href="https://masatomakino.github.io/threejs-position-util/demo/">demo page</a>.</p>
+
+<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+  <h2>License</h2>
+</a>
+<p>threejs-position-util is <a href="LICENSE">MIT licensed</a>.</p>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-class"><a href="classes/PositionUtil.html" class="tsd-kind-icon">Position<wbr/>Util</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
