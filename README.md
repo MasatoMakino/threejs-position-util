@@ -1,8 +1,9 @@
 # threejs-position-util
 
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
+[![CI_Main](https://github.com/MasatoMakino/threejs-position-util/actions/workflows/ci_main.yml/badge.svg)](https://github.com/MasatoMakino/threejs-position-util/actions/workflows/ci_main.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/fec771399093f1315350/maintainability)](https://codeclimate.com/github/MasatoMakino/threejs-position-util/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/fec771399093f1315350/test_coverage)](https://codeclimate.com/github/MasatoMakino/threejs-position-util/test_coverage)
-[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=MasatoMakino&repo=threejs-position-util&show_owner=true)](https://github.com/MasatoMakino/threejs-position-util)
 
@@ -47,7 +48,7 @@ import { PositionUtil } from "threejs-position-util";
 
 ### Functions
 
-[API documentation](https://masatomakino.github.io/threejs-position-util/api/)
+[API documentation](https://masatomakino.github.io/threejs-position-util/api/index.html)
 
 Call static functions in PositionUtil class.
 
