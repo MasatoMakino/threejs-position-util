@@ -1,4 +1,4 @@
-import { Matrix4, Vector3, } from "three";
+import { Matrix4, Vector3 } from "three";
 /**
  * Loaderで読み込んだジオメトリの位置の計測、ジオメトリのシフト操作をするクラスです。
  */
