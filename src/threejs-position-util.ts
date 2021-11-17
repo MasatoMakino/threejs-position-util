@@ -1,4 +1,4 @@
-import {BufferGeometry, Camera, Matrix4, Mesh, Vector3,} from "three";
+import { BufferGeometry, Camera, Matrix4, Mesh, Vector3 } from "three";
 
 /**
  * Loaderで読み込んだジオメトリの位置の計測、ジオメトリのシフト操作をするクラスです。
