@@ -35,7 +35,7 @@ npm install three --save-dev
 and
 
 ```bash
-npm install https://github.com/MasatoMakino/threejs-position-util.git --save-dev
+npm install @masatomakino/threejs-position-util --save-dev
 ```
 
 ### Import
@@ -43,7 +43,7 @@ npm install https://github.com/MasatoMakino/threejs-position-util.git --save-dev
 At first, import a class.
 
 ```js
-import { PositionUtil } from "threejs-position-util";
+import { PositionUtil } from "@masatomakino/threejs-position-util";
 ```
 
 ### Functions
