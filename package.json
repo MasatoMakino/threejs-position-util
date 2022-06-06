@@ -18,10 +18,10 @@
     "three": ">=0.126.0 <1.0.0"
   },
   "devDependencies": {
+    "@masatomakino/gulptask-demo-page": "^0.4.4",
+    "@masatomakino/gulptask-dev-server": "^0.4.1",
     "@types/jest": "^27.0.2",
     "@types/three": "^0.134.0",
-    "gulptask-demo-page": "MasatoMakino/gulptask-demo-page",
-    "gulptask-dev-server": "MasatoMakino/gulptask-dev-server",
     "husky": "^7.0.4",
     "jest": "^27.3.1",
     "prettier": "^2.4.1",
@@ -37,10 +37,10 @@
     "coverage": "jest --coverage",
     "start:dev": "npm run server & npm run watch:tsc & npm run watch:demo",
     "build": "npm run demo & npm run buildTS",
-    "demo": "npx gulptask-demo-page --body '<canvas id=\"webgl-canvas\" width=\"1920\" height=\"1080\"></canvas>'",
-    "buildTS": "npx tsc --project tsconfig.json & tsc --project tsconfig.esm.json",
+    "demo": "npx @masatomakino/gulptask-demo-page --body '<canvas id=\"webgl-canvas\" width=\"1920\" height=\"1080\"></canvas>'",
+    "buildTS": "npx tsc --project tsconfig.json & npx tsc --project tsconfig.esm.json",
     "typedocs": "npx typedoc --out ./docs/api src/index.ts",
-    "server": "npx gulptask-dev-server -b ./docs/demo",
+    "server": "npx @masatomakino/gulptask-dev-server -b ./docs/demo",
     "watch:demo": "npm run demo -- -W",
     "watch:tsc": "tsc -W --incremental --project tsconfig.json & tsc -W --incremental --project tsconfig.esm.json"
   },
