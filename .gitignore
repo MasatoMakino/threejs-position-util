@@ -249,3 +249,5 @@ Temporary Items
 .idea
 *.tsbuildinfo
 docs/
+lib/
+esm/
