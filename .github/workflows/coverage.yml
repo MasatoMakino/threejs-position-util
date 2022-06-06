@@ -23,6 +23,6 @@ jobs:
       - name: Code Climate Coverage Action
         uses: paambaati/codeclimate-action@v2.7.5
         env:
-          CC_TEST_REPORTER_ID: f9bf8ccfdd5856c7c475cf07f6aff9d652e6b4278ed3032094e3a542604995bb
+          CC_TEST_REPORTER_ID: 1523af90b23d22f62231ffa82ced25264edca396963e946a2e3f1987192e785c
         with:
           coverageCommand: npm run coverage
