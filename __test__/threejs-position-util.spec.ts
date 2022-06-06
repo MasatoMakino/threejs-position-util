@@ -7,9 +7,9 @@ import {
   Scene,
   SphereGeometry,
   Spherical,
-  Vector3
+  Vector3,
 } from "three";
-import {PositionUtil} from "../src";
+import { PositionUtil } from "../src";
 
 describe("座標ユーティリティ", () => {
   // シーンを作成
