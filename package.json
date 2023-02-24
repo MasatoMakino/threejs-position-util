@@ -18,11 +18,11 @@
     "threejs"
   ],
   "devDependencies": {
-    "@masatomakino/gulptask-demo-page": "^0.5.3",
-    "@masatomakino/gulptask-dev-server": "^0.4.2",
+    "@masatomakino/gulptask-demo-page": "^0.6.0",
     "@types/jest": "^29.2.4",
     "@types/node": "^18.11.11",
     "@types/three": "^0.146.0",
+    "browser-sync": "^2.27.12",
     "husky": "^8.0.2",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
@@ -46,7 +46,7 @@
     "demo": "npx @masatomakino/gulptask-demo-page --body '<canvas id=\"webgl-canvas\" width=\"1920\" height=\"1080\"></canvas>'",
     "buildTS": "tsc --project tsconfig.json & tsc --project tsconfig.esm.json",
     "typedocs": "npx typedoc --out ./docs/api src/index.ts",
-    "server": "npx @masatomakino/gulptask-dev-server -b ./docs/demo",
+    "server": "browser-sync ./docs/demo -w",
     "watch:demo": "npm run demo -- -W",
     "watch:tsc": "tsc -W --incremental --project tsconfig.json & tsc -W --incremental --project tsconfig.esm.json"
   },
