@@ -1,16 +1,12 @@
 name: Coverage Report
 
 on:
-  workflow_run:
-    workflows: ["CI_Main"]
+  push:
     branches: [main]
-    types:
-      - completed
 
 jobs:
   report:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_branch == 'main' }}
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js
@@ -23,6 +19,6 @@ jobs:
       - name: Code Climate Coverage Action
         uses: paambaati/codeclimate-action@v5.0.0
         env:
-          CC_TEST_REPORTER_ID: 1523af90b23d22f62231ffa82ced25264edca396963e946a2e3f1987192e785c
+          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         with:
           coverageCommand: npm run coverage
