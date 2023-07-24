@@ -5,7 +5,7 @@ export default {
     "^(\\.{1,2}/.*)\\.js$": "$1",
   },
   transform: {
-    "^.+\\.tsx?$": [
+    "^.+\\.(j|t)sx?$": [
       "ts-jest",
       {
         useESM: true,
