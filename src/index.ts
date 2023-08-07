@@ -1,1 +1,1 @@
-export * from "./threejs-position-util";
+export * from "./threejs-position-util.js";
