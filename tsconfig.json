@@ -7,12 +7,11 @@
     "declarationMap": true /* Generates a sourcemap for each corresponding '.d.ts' file. */,
     "outDir": "./esm" /* Redirect output structure to the directory. */,
     "rootDir": "./src",
-
     /* Module Resolution Options */
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "exclude": ["node_modules"]
 }
