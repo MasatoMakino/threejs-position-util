@@ -1,6 +1,6 @@
 {
   "name": "@masatomakino/threejs-position-util",
-  "version": "0.3.4",
+  "version": "0.4.0",
   "main": "./esm/index.js",
   "type": "module",
   "types": "./esm/index.d.ts",
