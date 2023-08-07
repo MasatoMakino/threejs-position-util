@@ -1,4 +1,4 @@
-import {PositionUtil} from "..";
+import { PositionUtil } from "../esm/index.js";
 import * as THREE from "three";
 
 const W = 1920;
@@ -13,7 +13,7 @@ const onDomContentsLoaded = () => {
 
   const renderOption = {
     canvas: document.getElementById("webgl-canvas"),
-    antialias: true
+    antialias: true,
   };
   const renderer = new THREE.WebGLRenderer(renderOption);
   renderer.setClearColor(new THREE.Color(0x000000));
