@@ -8,7 +8,7 @@
     "outDir": "./esm" /* Redirect output structure to the directory. */,
     "rootDir": "./src",
     /* Module Resolution Options */
-    "moduleResolution": "node",
+    "moduleResolution": "node16",
     "esModuleInterop": true,
     "skipLibCheck": true,
   },
