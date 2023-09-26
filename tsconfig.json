@@ -1,14 +1,12 @@
 {
   "compilerOptions": {
-    /* Basic Options */
     "target": "ES2021",
-    "module": "ES2022",
+    "module": "node16",
     "declaration": true /* Generates corresponding '.d.ts' file. */,
     "declarationMap": true /* Generates a sourcemap for each corresponding '.d.ts' file. */,
     "outDir": "./esm" /* Redirect output structure to the directory. */,
     "rootDir": "./src",
-    /* Module Resolution Options */
-    "moduleResolution": "node",
+    "moduleResolution": "node16",
     "esModuleInterop": true,
     "skipLibCheck": true,
   },

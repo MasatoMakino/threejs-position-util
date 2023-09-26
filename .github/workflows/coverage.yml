@@ -15,7 +15,7 @@ jobs:
           node-version: "18"
           cache: "npm"
       - run: npm ci
-      - run: npm run buildTS
+      - run: npm run buildTS -- --noEmit
       - name: Code Climate Coverage Action
         uses: paambaati/codeclimate-action@v5.0.0
         env:
