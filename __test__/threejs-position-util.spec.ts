@@ -9,7 +9,7 @@ import {
   Spherical,
   Vector3,
 } from "three";
-import { PositionUtil } from "../src";
+import { PositionUtil } from "../src/index.js";
 
 describe("座標ユーティリティ", () => {
   // シーンを作成
@@ -79,7 +79,7 @@ describe("座標ユーティリティ", () => {
       geo: BufferGeometry,
       scene: Scene,
       camera: Camera,
-      pos: Vector3
+      pos: Vector3,
     ) => {
       const mesh = new Mesh(geo);
       mesh.position.set(pos.x, pos.y, pos.z);
