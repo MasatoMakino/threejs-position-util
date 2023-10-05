@@ -33,7 +33,7 @@
     "jest-environment-jsdom": "^29.6.1",
     "lint-staged": "^14.0.1",
     "prettier": "^3.0.0",
-    "three": "^0.156.1",
+    "three": "^0.157.0",
     "ts-jest": "^29.1.1",
     "typedoc": "^0.25.0",
     "typescript": "^5.1.6"
