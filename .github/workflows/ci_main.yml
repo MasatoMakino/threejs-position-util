@@ -26,4 +26,4 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npm run buildTS -- --noEmit
-      - run: npm test
+      - run: npx vitest --run
