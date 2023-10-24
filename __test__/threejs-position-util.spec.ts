@@ -10,6 +10,7 @@ import {
   Vector3,
 } from "three";
 import { PositionUtil } from "../src/index.js";
+import { describe, expect, test } from "vitest";
 
 describe("座標ユーティリティ", () => {
   // シーンを作成
