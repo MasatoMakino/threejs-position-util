@@ -26,14 +26,6 @@ threejs-position-util output a geometry position on screen.
 
 ### Install
 
-threejs-position-util depend on [three.js](https://threejs.org/)
-
-```bash
-npm install three --save-dev
-```
-
-and
-
 ```bash
 npm install @masatomakino/threejs-position-util --save-dev
 ```
