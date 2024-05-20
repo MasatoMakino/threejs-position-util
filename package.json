@@ -26,15 +26,14 @@
   "devDependencies": {
     "@masatomakino/gulptask-demo-page": "^0.8.0",
     "@types/three": "^0.163.0",
-    "@vitest/coverage-istanbul": "^1.0.4",
+    "@vitest/coverage-istanbul": "^1.6.0",
     "browser-sync": "^3.0.2",
     "husky": "^9.0.10",
     "jsdom": "^24.0.0",
     "lint-staged": "^15.0.2",
     "prettier": "^3.0.0",
     "typedoc": "^0.25.0",
-    "typescript": "^5.1.6",
-    "vitest": "^1.0.4"
+    "typescript": "^5.1.6"
   },
   "peerDependencies": {
     "three": ">=0.126.0 <1.0.0"
