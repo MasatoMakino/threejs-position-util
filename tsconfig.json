@@ -7,7 +7,7 @@
     "outDir": "./esm" /* Redirect output structure to the directory. */,
     "rootDir": "./src",
     "moduleResolution": "Bundler",
-    "esModuleInterop": true,
+    "esModuleInterop": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
