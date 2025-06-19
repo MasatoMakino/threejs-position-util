@@ -1,6 +1,6 @@
 import {
-  BufferGeometry,
-  Camera,
+  type BufferGeometry,
+  type Camera,
   Mesh,
   Object3D,
   PerspectiveCamera,
@@ -9,8 +9,14 @@ import {
   Spherical,
   Vector3,
 } from "three";
-import { PositionUtil } from "../src/index.js";
 import { describe, expect, test } from "vitest";
+import {
+  get2DPositionWithMesh,
+  getGeometryCenterInLocal,
+  getGeometryCenterInWorld,
+  getROfGlobe,
+  shiftMesh,
+} from "../src/index.js";
 
 describe("座標ユーティリティ", () => {
   // シーンを作成
@@ -24,49 +30,49 @@ describe("座標ユーティリティ", () => {
   test("ジオメトリ中心のワールド座標取得", () => {
     const geo = new SphereGeometry(10);
     const mesh = new Mesh(geo);
-    PositionUtil.shiftMesh(mesh, new Vector3(-10, -10, -10));
+    shiftMesh(mesh, new Vector3(-10, -10, -10));
     mesh.position.set(10, 10, 10);
     const container = new Object3D();
     container.position.set(10, 10, 10);
     container.add(mesh);
     scene.add(container);
 
-    const vec = PositionUtil.getGeometryCenterInWorld(mesh);
+    const vec = getGeometryCenterInWorld(mesh);
     expect(vec).toEqual(new Vector3(30, 30, 30));
   });
 
   test("ジオメトリ中心のワールド座標取得 : シーンにaddされていないオブジェクト", () => {
     const geo = new SphereGeometry(10);
     const mesh = new Mesh(geo);
-    PositionUtil.shiftMesh(mesh, new Vector3(-10, -10, -10));
+    shiftMesh(mesh, new Vector3(-10, -10, -10));
     const expectPosition = new Vector3(10, 10, 10);
 
     /**
      * シーンにaddされていないMeshは、matrixWorldが存在しないためジオメトリの中心座標がそのまま返される。
      * mesh自体のpositionは無視される。
      */
-    let vec = PositionUtil.getGeometryCenterInWorld(mesh);
+    let vec = getGeometryCenterInWorld(mesh);
     expect(vec).toEqual(expectPosition);
 
     /**
      * そのためmeshのpositionを移動して再計算しても結果は同じ。
      */
     mesh.position.set(10, 10, 10);
-    vec = PositionUtil.getGeometryCenterInWorld(mesh);
+    vec = getGeometryCenterInWorld(mesh);
     expect(vec).toEqual(expectPosition);
   });
 
   test("ジオメトリ中心のローカル座標取得", () => {
     const geo = new SphereGeometry(10);
     const mesh = new Mesh(geo);
-    PositionUtil.shiftMesh(mesh, new Vector3(-10, -10, -10));
+    shiftMesh(mesh, new Vector3(-10, -10, -10));
     mesh.position.set(10, 10, 10);
     const container = new Object3D();
     container.position.set(10, 10, 10);
     container.add(mesh);
     scene.add(container);
 
-    const vec = PositionUtil.getGeometryCenterInLocal(mesh);
+    const vec = getGeometryCenterInLocal(mesh);
 
     //親Object3Dの移動やmeshの移動は無視して、ジオメトリの中心位置だけを取得する。
     //座標の基準はmeshの中心点
@@ -85,7 +91,7 @@ describe("座標ユーティリティ", () => {
       const mesh = new Mesh(geo);
       mesh.position.set(pos.x, pos.y, pos.z);
       scene.add(mesh);
-      return PositionUtil.get2DPositionWithMesh(mesh, camera, W, H);
+      return get2DPositionWithMesh(mesh, camera, W, H);
     };
 
     const vec0 = addMesh(geo, scene, camera, new Vector3(0, 0, 0));
@@ -109,7 +115,7 @@ describe("座標ユーティリティ", () => {
     const vec = new Vector3(1932, 1688, 127);
 
     const spherical = new Spherical().setFromVector3(vec);
-    const rad = PositionUtil.getROfGlobe(vec);
+    const rad = getROfGlobe(vec);
 
     expect(rad).toBe(spherical.radius);
   });

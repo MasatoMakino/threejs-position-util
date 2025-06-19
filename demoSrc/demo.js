@@ -1,5 +1,5 @@
-import { PositionUtil } from "../esm/index.js";
 import * as THREE from "three";
+import { PositionUtil } from "../esm/index.js";
 
 const W = 1920;
 const H = 1080;
