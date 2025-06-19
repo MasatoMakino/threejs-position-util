@@ -26,4 +26,6 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npm run buildTS -- --noEmit
+      - name: Run Biome
+        run: npx biome ci .
       - run: npx vitest --run
