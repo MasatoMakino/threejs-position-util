@@ -52,7 +52,7 @@ describe("ThreeJS Position Utilities", () => {
     const expectPosition = new Vector3(10, 10, 10);
 
     /**
-     * Meshes not added to scene don't have matrixWorld, so geometry center is returned as-is.
+     * Meshes not added to the scene don't have an updated matrixWorld, so the geometry center is returned as-is.
      * The mesh's own position is ignored.
      */
     let vec = getGeometryCenterInWorld(mesh);
