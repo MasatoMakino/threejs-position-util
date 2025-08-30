@@ -105,14 +105,14 @@ describe("ThreeJS Position Utilities", () => {
 
     expect(vec0).toEqual(new Vector3(W / 2, H / 2, 0));
 
-    expect(vec1.x).toBeCloseTo(699.2649352637056);
-    expect(vec1.y).toBeCloseTo(279.26493526370575);
+    expect(vec1.x).toBeCloseTo(699.2649352637056, 3);
+    expect(vec1.y).toBeCloseTo(279.26493526370575, 3);
 
-    expect(vec2.x).toBeCloseTo(1416.286363288515);
-    expect(vec2.y).toBeCloseTo(735.5512985522207);
+    expect(vec2.x).toBeCloseTo(1416.286363288515, 3);
+    expect(vec2.y).toBeCloseTo(735.5512985522207, 3);
 
-    expect(vec3.x).toBeCloseTo(1245.1789770553219);
-    expect(vec3.y).toBeCloseTo(662.2195615951379);
+    expect(vec3.x).toBeCloseTo(1245.1789770553219, 3);
+    expect(vec3.y).toBeCloseTo(662.2195615951379, 3);
   });
 
   test("should calculate polar coordinate radius equivalent to Three.js Spherical.radius", () => {
