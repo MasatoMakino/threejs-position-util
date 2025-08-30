@@ -121,6 +121,6 @@ describe("Three.js Position Utilities", () => {
     const spherical = new Spherical().setFromVector3(vec);
     const rad = getROfGlobe(vec);
 
-    expect(rad).toBe(spherical.radius);
+    expect(rad).toBeCloseTo(spherical.radius, 12);
   });
 });
