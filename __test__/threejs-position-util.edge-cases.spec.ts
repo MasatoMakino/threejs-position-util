@@ -16,7 +16,7 @@ import {
   getROfGlobe,
 } from "../src/index.js";
 
-describe("ThreeJS Position Utilities - Edge Cases", () => {
+describe("Three.js Position Utilities - Edge Cases", () => {
   describe("Empty and Minimal Geometry Edge Cases", () => {
     test("should handle empty BufferGeometry gracefully", () => {
       const emptyGeometry = new BufferGeometry();

@@ -18,7 +18,7 @@ import {
   shiftMesh,
 } from "../src/index.js";
 
-describe("ThreeJS Position Utilities", () => {
+describe("Three.js Position Utilities", () => {
   const W = 1920;
   const H = 1080;
   let scene: Scene;
