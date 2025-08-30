@@ -18,7 +18,7 @@ import {
   shiftMesh,
 } from "../src/index.js";
 
-describe("座標ユーティリティ", () => {
+describe("ThreeJS Position Utilities", () => {
   // シーンを作成
   const scene = new Scene();
   const W = 1920;
@@ -27,7 +27,7 @@ describe("座標ユーティリティ", () => {
   camera.position.set(0, 0, 1000);
   scene.add(camera);
 
-  test("ジオメトリ中心のワールド座標取得", () => {
+  test("should return geometry center in world coordinates when mesh is in scene hierarchy", () => {
     const geo = new SphereGeometry(10);
     const mesh = new Mesh(geo);
     shiftMesh(mesh, new Vector3(-10, -10, -10));
@@ -41,28 +41,28 @@ describe("座標ユーティリティ", () => {
     expect(vec).toEqual(new Vector3(30, 30, 30));
   });
 
-  test("ジオメトリ中心のワールド座標取得 : シーンにaddされていないオブジェクト", () => {
+  test("should return geometry center ignoring mesh position when mesh is not added to scene", () => {
     const geo = new SphereGeometry(10);
     const mesh = new Mesh(geo);
     shiftMesh(mesh, new Vector3(-10, -10, -10));
     const expectPosition = new Vector3(10, 10, 10);
 
     /**
-     * シーンにaddされていないMeshは、matrixWorldが存在しないためジオメトリの中心座標がそのまま返される。
-     * mesh自体のpositionは無視される。
+     * Meshes not added to scene don't have matrixWorld, so geometry center is returned as-is.
+     * The mesh's own position is ignored.
      */
     let vec = getGeometryCenterInWorld(mesh);
     expect(vec).toEqual(expectPosition);
 
     /**
-     * そのためmeshのpositionを移動して再計算しても結果は同じ。
+     * Therefore, moving the mesh position and recalculating yields the same result.
      */
     mesh.position.set(10, 10, 10);
     vec = getGeometryCenterInWorld(mesh);
     expect(vec).toEqual(expectPosition);
   });
 
-  test("ジオメトリ中心のローカル座標取得", () => {
+  test("should return geometry center relative to mesh origin ignoring parent transforms", () => {
     const geo = new SphereGeometry(10);
     const mesh = new Mesh(geo);
     shiftMesh(mesh, new Vector3(-10, -10, -10));
@@ -74,12 +74,12 @@ describe("座標ユーティリティ", () => {
 
     const vec = getGeometryCenterInLocal(mesh);
 
-    //親Object3Dの移動やmeshの移動は無視して、ジオメトリの中心位置だけを取得する。
-    //座標の基準はmeshの中心点
+    // Ignores parent Object3D movement and mesh movement, getting only geometry center position.
+    // Coordinate reference is the mesh center point
     expect(vec).toEqual(new Vector3(10, 10, 10));
   });
 
-  test("スクリーン座標の取得", () => {
+  test("should convert 3D world positions to 2D screen coordinates accurately", () => {
     const geo = new SphereGeometry(10);
 
     const addMesh = (
@@ -111,7 +111,7 @@ describe("座標ユーティリティ", () => {
     expect(vec3.y).toBeCloseTo(662.2195615951379);
   });
 
-  test("極座標半径の取得", () => {
+  test("should calculate polar coordinate radius equivalent to Three.js Spherical.radius", () => {
     const vec = new Vector3(1932, 1688, 127);
 
     const spherical = new Spherical().setFromVector3(vec);

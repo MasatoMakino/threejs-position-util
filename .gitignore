@@ -251,3 +251,7 @@ Temporary Items
 docs/
 lib/
 esm/
+
+# Local work notes and development documentation
+.work-notes/
+.claude/settings.local.json
