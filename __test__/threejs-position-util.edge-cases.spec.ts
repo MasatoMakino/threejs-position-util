@@ -166,8 +166,8 @@ describe("ThreeJS Position Utilities - Edge Cases", () => {
       expect(typeof result.x).toBe("number");
       expect(typeof result.y).toBe("number");
 
-      // Three.js handles negative canvas dimensions correctly
-      // Position (0,0,0) projects to screen center: (-800/2, -600/2) = (-400, -300)
+      // Mapping formula in get2DPosition handles negative canvas dimensions
+      // Position (0,0,0) maps to screen center: (-800/2, -600/2) = (-400, -300)
       expect(result.x).toBeCloseTo(-400, 1);
       expect(result.y).toBeCloseTo(-300, 1);
       expect(result.z).toBe(0);
