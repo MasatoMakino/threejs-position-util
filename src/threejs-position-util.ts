@@ -7,8 +7,8 @@ import {
 } from "three";
 
 /**
- * メッシュ内のジオメトリの重心座標を求める。
- * 原点はワールド座標。
+ * Calculate the center coordinates of geometry within a mesh.
+ * The origin is in world coordinates.
  *
  * @param mesh
  * @returns {Vector3}
@@ -22,9 +22,9 @@ export function getGeometryCenterInWorld(mesh: Mesh): Vector3 {
 }
 
 /**
- * メッシュ内のジオメトリの重心座標を求める。
- * メッシュを原点とする座標を返す。
- * （例えばメッシュ原点を中心とする球体ジオメトリがある場合はVector3(0,0,0)を返す）
+ * Calculate the center coordinates of geometry within a mesh.
+ * Returns coordinates with the mesh as the origin.
+ * (For example, returns Vector3(0,0,0) for sphere geometry centered at the mesh origin)
  *
  * @param mesh
  * @returns {Vector3}
@@ -34,8 +34,8 @@ export function getGeometryCenterInLocal(mesh: Mesh): Vector3 {
 }
 
 /**
- * ジオメトリの重心座標を求める。
- * 座標原点はジオメトリを格納するメッシュの原点。
+ * Calculate the center coordinates of geometry.
+ * The coordinate origin is at the origin of the mesh containing the geometry.
  * @param geo
  */
 export function getCenter(geo: BufferGeometry): Vector3 {
@@ -51,7 +51,7 @@ export function getCenter(geo: BufferGeometry): Vector3 {
 }
 
 /**
- * グローバル座標から2Dスクリーン座標を取得する。
+ * Convert global coordinates to 2D screen coordinates.
  * @param {Vector3} vec
  * @param {Camera} camera
  * @param {number} canvasW
@@ -73,7 +73,7 @@ export function get2DPosition(
 }
 
 /**
- * メッシュから2Dスクリーン座標を取得する。
+ * Get 2D screen coordinates from a mesh.
  * @param {Mesh} mesh
  * @param {Camera} camera
  * @param {number} canvasW
@@ -91,7 +91,7 @@ export function get2DPositionWithMesh(
 }
 
 /**
- * 直交座標から三次元極座標の半径を取得する。
+ * Get the radius of three-dimensional polar coordinates from Cartesian coordinates.
  * @param {Vector3} vec
  * @returns {number}
  */
@@ -100,21 +100,22 @@ export function getROfGlobe(vec: Vector3): number {
 }
 
 /**
- * メッシュとジオメトリの位置をずらす。
- * メッシュは移動し、ジオメトリは見かけ上同じ位置を維持する。
+ * Shift the position of mesh and geometry.
+ * The mesh moves while the geometry maintains its apparent position.
  *
- * ObjLoaderなどで読み込んだ直後のMeshは、全てGeometryの原点が(0,0,0)になっているため回転や拡大が意図通りに動かない。
- * 中心点を任意の場所にずらすことで操作が容易になる。
+ * Meshes loaded immediately after using ObjLoader etc. have all Geometry origins at (0,0,0),
+ * which prevents rotation and scaling from working as intended.
+ * Moving the center point to an arbitrary location makes operations easier.
  *
  * @param mesh
- * @param pos meshの中心点になる座標
+ * @param pos coordinates that will become the center point of the mesh
  */
 export function shiftMesh(mesh: Mesh, pos: Vector3): void {
   const position = pos.clone();
-  //ジオメトリをずらす
+  // Shift the geometry
   mesh.geometry.applyMatrix4(
     new Matrix4().makeTranslation(-position.x, -position.y, -position.z),
   );
-  //メッシュを指定された量ずらす
+  // Move the mesh by the specified amount
   mesh.position.add(position);
 }
