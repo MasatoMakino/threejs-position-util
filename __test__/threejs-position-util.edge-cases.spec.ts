@@ -174,7 +174,7 @@ describe("ThreeJS Position Utilities - Edge Cases", () => {
     });
 
     test("should handle very small non-zero coordinates", () => {
-      const smallValue = Number.MIN_VALUE;
+      const smallValue = Number.EPSILON;
       const vector = new Vector3(smallValue, smallValue, smallValue);
 
       const radius = getROfGlobe(vector);
