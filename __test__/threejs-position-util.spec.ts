@@ -79,7 +79,7 @@ describe("Three.js Position Utilities", () => {
     const vec = getGeometryCenterInLocal(mesh);
 
     // Ignores parent Object3D movement and mesh movement, getting only geometry center position.
-    // Coordinate reference is the mesh center point
+    // Coordinate reference is the mesh local origin (pivot)
     expect(vec).toEqual(new Vector3(10, 10, 10));
   });
 
