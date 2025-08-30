@@ -22,11 +22,10 @@ describe("ThreeJS Position Utilities - Edge Cases", () => {
       const emptyGeometry = new BufferGeometry();
       const mesh = new Mesh(emptyGeometry);
 
-      // Empty geometry results in Box3 with Infinity values after computeBoundingBox
+      // Empty geometry results in empty Box3 after computeBoundingBox
       emptyGeometry.computeBoundingBox();
       expect(emptyGeometry.boundingBox).toBeDefined();
-      expect(emptyGeometry.boundingBox?.min.x).toBe(Infinity);
-      expect(emptyGeometry.boundingBox?.max.x).toBe(-Infinity);
+      expect(emptyGeometry.boundingBox?.isEmpty()).toBe(true);
 
       // Functions should handle invalid boundingBox gracefully
       expect(() => getGeometryCenterInLocal(mesh)).not.toThrow();
@@ -90,6 +89,7 @@ describe("ThreeJS Position Utilities - Edge Cases", () => {
   describe("Matrix State Edge Cases", () => {
     test("should handle camera with outdated matrixWorld", () => {
       const camera = new PerspectiveCamera(45, 16 / 9, 0.1, 1000);
+      camera.updateProjectionMatrix();
       camera.position.set(100, 100, 100);
       // Intentionally don't call camera.updateMatrixWorld()
 
@@ -103,6 +103,7 @@ describe("ThreeJS Position Utilities - Edge Cases", () => {
       expect(result).toBeInstanceOf(Vector3);
       expect(typeof result.x).toBe("number");
       expect(typeof result.y).toBe("number");
+      expect(result.z).toBe(0);
     });
   });
 
@@ -115,11 +116,12 @@ describe("ThreeJS Position Utilities - Edge Cases", () => {
 
       expect(Number.isFinite(radius)).toBe(true);
       expect(radius).toBeGreaterThan(0);
-      expect(radius).toBe(Math.sqrt(largeValue * largeValue * 3));
+      expect(radius).toBeCloseTo(Math.sqrt(largeValue * largeValue * 3), 6);
     });
 
     test("should handle very small canvas dimensions gracefully", () => {
       const camera = new PerspectiveCamera(45, 1, 0.1, 1000);
+      camera.updateProjectionMatrix();
       camera.position.set(0, 0, 100);
       camera.updateMatrixWorld();
 
@@ -131,6 +133,7 @@ describe("ThreeJS Position Utilities - Edge Cases", () => {
       expect(typeof result1.y).toBe("number");
       expect(Number.isFinite(result1.x)).toBe(true);
       expect(Number.isFinite(result1.y)).toBe(true);
+      expect(result1.z).toBe(0);
 
       // Very small height (1 pixel)
       const result2 = get2DPosition(position, camera, 800, 1);
@@ -138,6 +141,7 @@ describe("ThreeJS Position Utilities - Edge Cases", () => {
       expect(typeof result2.y).toBe("number");
       expect(Number.isFinite(result2.x)).toBe(true);
       expect(Number.isFinite(result2.y)).toBe(true);
+      expect(result2.z).toBe(0);
 
       // Both very small (edge case but realistic)
       const result3 = get2DPosition(position, camera, 1, 1);
@@ -145,10 +149,12 @@ describe("ThreeJS Position Utilities - Edge Cases", () => {
       expect(typeof result3.y).toBe("number");
       expect(Number.isFinite(result3.x)).toBe(true);
       expect(Number.isFinite(result3.y)).toBe(true);
+      expect(result3.z).toBe(0);
     });
 
     test("should handle negative canvas dimensions mathematically", () => {
       const camera = new PerspectiveCamera(45, 1, 0.1, 1000);
+      camera.updateProjectionMatrix();
       camera.position.set(0, 0, 100);
       camera.updateMatrixWorld();
 
@@ -230,6 +236,7 @@ describe("ThreeJS Position Utilities - Edge Cases", () => {
     test("should handle extreme camera FOV values", () => {
       // Very wide FOV
       const wideFovCamera = new PerspectiveCamera(179, 1, 0.1, 1000);
+      wideFovCamera.updateProjectionMatrix();
       wideFovCamera.position.set(0, 0, 100);
 
       const position = new Vector3(10, 10, 0);
@@ -238,9 +245,11 @@ describe("ThreeJS Position Utilities - Edge Cases", () => {
       expect(result1).toBeInstanceOf(Vector3);
       expect(typeof result1.x).toBe("number");
       expect(typeof result1.y).toBe("number");
+      expect(result1.z).toBe(0);
 
       // Very narrow FOV
       const narrowFovCamera = new PerspectiveCamera(1, 1, 0.1, 1000);
+      narrowFovCamera.updateProjectionMatrix();
       narrowFovCamera.position.set(0, 0, 100);
 
       const result2 = get2DPosition(position, narrowFovCamera, 800, 600);
@@ -248,11 +257,13 @@ describe("ThreeJS Position Utilities - Edge Cases", () => {
       expect(result2).toBeInstanceOf(Vector3);
       expect(typeof result2.x).toBe("number");
       expect(typeof result2.y).toBe("number");
+      expect(result2.z).toBe(0);
     });
 
     test("should handle extreme camera near/far planes", () => {
       // Very close near plane
       const closeCamera = new PerspectiveCamera(45, 1, 0.001, 1000);
+      closeCamera.updateProjectionMatrix();
       closeCamera.position.set(0, 0, 1);
 
       const position = new Vector3(0, 0, 0);
@@ -261,6 +272,7 @@ describe("ThreeJS Position Utilities - Edge Cases", () => {
       expect(result).toBeInstanceOf(Vector3);
       expect(typeof result.x).toBe("number");
       expect(typeof result.y).toBe("number");
+      expect(result.z).toBe(0);
     });
   });
 });
