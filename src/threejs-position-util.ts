@@ -22,6 +22,13 @@ import {
  */
 export function getGeometryCenterInWorld(mesh: Mesh): Vector3 {
   const vec: Vector3 = getGeometryCenterInLocal(mesh);
+  /**
+   * Parent check is required: calling mesh.updateWorldMatrix(true, true) without parent
+   * fails for meshes not added to scene, returning Vector3(0,0,0) instead of expected coordinates.
+   *
+   * Root cause: When parent === null, Three.js uses `matrixWorld.copy(matrix)` but the local
+   * matrix may not be properly initialized/updated, resulting in zero transformation.
+   */
   if (mesh.parent) {
     mesh.updateWorldMatrix(true, true);
   }
