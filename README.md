@@ -9,7 +9,7 @@
 
 ## Demo
 
-View [Demo Page](https://masatomakino.github.io/threejs-position-util/demo/) and open console.
+View the [Demo page](https://masatomakino.github.io/threejs-position-util/demo/) and open the browser console.
 
 ```
 Vector3
