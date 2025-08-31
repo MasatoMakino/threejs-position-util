@@ -1,3 +1,11 @@
+/**
+ * @fileoverview Three.js position calculation utilities
+ *
+ * Provides geometry center calculations, 3D-to-2D coordinate conversion,
+ * polar coordinate radius computation, and mesh pivot point manipulation.
+ * Useful for UI positioning and mesh transformations.
+ */
+
 import {
   type BufferGeometry,
   type Camera,
@@ -7,11 +15,10 @@ import {
 } from "three";
 
 /**
- * Calculate the center coordinates of geometry within a mesh.
- * The origin is in world coordinates.
+ * Calculate geometry center coordinates in world space.
  *
- * @param mesh
- * @returns {Vector3}
+ * @param mesh - The mesh containing the geometry
+ * @returns The center coordinates in world space
  */
 export function getGeometryCenterInWorld(mesh: Mesh): Vector3 {
   const vec: Vector3 = getGeometryCenterInLocal(mesh);
@@ -22,21 +29,21 @@ export function getGeometryCenterInWorld(mesh: Mesh): Vector3 {
 }
 
 /**
- * Calculate the center coordinates of geometry within a mesh.
- * Returns coordinates with the mesh as the origin.
- * (For example, returns Vector3(0,0,0) for sphere geometry centered at the mesh origin)
+ * Calculate geometry center coordinates in local mesh space.
+ * Returns Vector3(0,0,0) for geometry centered at mesh origin.
  *
- * @param mesh
- * @returns {Vector3}
+ * @param mesh - The mesh containing the geometry
+ * @returns The center coordinates in local mesh space
  */
 export function getGeometryCenterInLocal(mesh: Mesh): Vector3 {
   return getCenter(mesh.geometry);
 }
 
 /**
- * Calculate the center coordinates of geometry.
- * The coordinate origin is at the origin of the mesh containing the geometry.
- * @param geo
+ * Calculate geometry bounding box center.
+ *
+ * @param geo - The geometry to analyze
+ * @returns The center coordinates of the bounding box
  */
 export function getCenter(geo: BufferGeometry): Vector3 {
   geo.computeBoundingBox();
@@ -51,12 +58,14 @@ export function getCenter(geo: BufferGeometry): Vector3 {
 }
 
 /**
- * Convert global coordinates to 2D screen coordinates.
- * @param {Vector3} vec
- * @param {Camera} camera
- * @param {number} canvasW
- * @param {number} canvasH
- * @returns {Vector3}
+ * Project 3D world coordinates to 2D screen space.
+ * Origin (0,0) is top-left, (canvasW, canvasH) is bottom-right.
+ *
+ * @param vec - The 3D world coordinates to project
+ * @param camera - The camera used for projection
+ * @param canvasW - The width of the canvas in pixels
+ * @param canvasH - The height of the canvas in pixels
+ * @returns The 2D screen coordinates with z=0
  */
 export function get2DPosition(
   vec: Vector3,
@@ -73,12 +82,14 @@ export function get2DPosition(
 }
 
 /**
- * Get 2D screen coordinates from a mesh.
- * @param {Mesh} mesh
- * @param {Camera} camera
- * @param {number} canvasW
- * @param {number} canvasH
- * @returns {Vector3}
+ * Project mesh center to 2D screen coordinates.
+ * Useful for positioning UI elements relative to 3D objects.
+ *
+ * @param mesh - The mesh to project
+ * @param camera - The camera used for projection
+ * @param canvasW - The width of the canvas in pixels
+ * @param canvasH - The height of the canvas in pixels
+ * @returns The 2D screen coordinates of the mesh center
  */
 export function get2DPositionWithMesh(
   mesh: Mesh,
@@ -91,24 +102,22 @@ export function get2DPositionWithMesh(
 }
 
 /**
- * Get the radius of three-dimensional polar coordinates from Cartesian coordinates.
- * @param {Vector3} vec
- * @returns {number}
+ * Calculate distance from origin using √(x² + y² + z²).
+ *
+ * @param vec - The Cartesian coordinates
+ * @returns The distance from origin
  */
 export function getROfGlobe(vec: Vector3): number {
   return Math.sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
 }
 
 /**
- * Shift the position of mesh and geometry.
- * The mesh moves while the geometry maintains its apparent position.
+ * Relocate mesh pivot point while maintaining visual position.
+ * Useful for meshes from ObjLoader where geometry origin is (0,0,0),
+ * making rotations and scaling work intuitively.
  *
- * Meshes loaded immediately after using ObjLoader etc. have all Geometry origins at (0,0,0),
- * which prevents rotation and scaling from working as intended.
- * Moving the center point to an arbitrary location makes operations easier.
- *
- * @param mesh
- * @param pos coordinates that will become the center point of the mesh
+ * @param mesh - The mesh to reposition
+ * @param pos - New center point coordinates
  */
 export function shiftMesh(mesh: Mesh, pos: Vector3): void {
   const position = pos.clone();
