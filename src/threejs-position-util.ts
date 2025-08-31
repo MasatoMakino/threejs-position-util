@@ -23,7 +23,7 @@ import {
 export function getGeometryCenterInWorld(mesh: Mesh): Vector3 {
   const vec: Vector3 = getGeometryCenterInLocal(mesh);
   if (mesh.parent) {
-    mesh.parent.updateMatrixWorld(true);
+    mesh.parent.updateWorldMatrix(true, true);
   }
   return vec.applyMatrix4(mesh.matrixWorld);
 }
