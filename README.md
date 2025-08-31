@@ -23,7 +23,7 @@ threejs-position-util converts a 3D geometry position to 2D screen coordinates (
 ## Use Cases
 
 - UI Overlays: Position tooltips, labels, or info panels above 3D models
-- HUD Elements: Create heads-up displays that follow 3D objects  
+- HUD Elements: Create heads-up displays that follow 3D objects
 - Interactive Markers: Place clickable HTML buttons over specific 3D locations
 - Data Visualization: Add 2D charts or text that correspond to 3D data points
 
