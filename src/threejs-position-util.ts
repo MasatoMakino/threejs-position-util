@@ -23,8 +23,9 @@ import {
 export function getGeometryCenterInWorld(mesh: Mesh): Vector3 {
   const vec: Vector3 = getGeometryCenterInLocal(mesh);
   if (mesh.parent) {
-    mesh.parent.updateWorldMatrix(true, true);
+    mesh.updateWorldMatrix(true, true);
   }
+
   return vec.applyMatrix4(mesh.matrixWorld);
 }
 
@@ -73,6 +74,7 @@ export function get2DPosition(
   canvasW: number,
   canvasH: number,
 ): Vector3 {
+  camera.updateMatrixWorld();
   const vector = vec.clone().project(camera);
   vector.x = ((vector.x + 1) * canvasW) / 2;
   vector.y = ((-vector.y + 1) * canvasH) / 2;
