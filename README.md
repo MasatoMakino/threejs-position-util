@@ -18,7 +18,7 @@ y: 540
 z: 0
 ```
 
-threejs-position-util converts a 3D geometry position to 2D screen coordinates, ideal for positioning HTML UI elements over 3D objects.
+threejs-position-util converts a 3D geometry position to 2D screen coordinates (CSS pixels; origin at top-left), ideal for positioning HTML UI elements over 3D objects.
 
 ## Use Cases
 
