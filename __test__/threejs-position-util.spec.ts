@@ -9,7 +9,7 @@ import {
   Spherical,
   Vector3,
 } from "three";
-import { beforeEach, describe, expect, test } from "vitest";
+import { afterEach, beforeEach, describe, expect, test } from "vitest";
 import {
   get2DPositionWithMesh,
   getGeometryCenterInLocal,
@@ -29,6 +29,12 @@ describe("Three.js Position Utilities", () => {
     camera = new PerspectiveCamera(45, W / H, 1, 10000);
     camera.position.set(0, 0, 1000);
     scene.add(camera);
+  });
+
+  afterEach(() => {
+    // Clean up camera and scene to prevent test contamination
+    scene.remove(camera);
+    scene.clear();
   });
 
   test("should return geometry center in world coordinates when mesh is in scene hierarchy", () => {

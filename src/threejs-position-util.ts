@@ -1,3 +1,11 @@
+/**
+ * @fileoverview Three.js position calculation utilities
+ *
+ * Provides geometry center calculations, 3D-to-2D coordinate conversion,
+ * polar coordinate radius computation, and mesh pivot point manipulation.
+ * Useful for UI positioning and mesh transformations.
+ */
+
 import {
   type BufferGeometry,
   type Camera,
@@ -7,36 +15,43 @@ import {
 } from "three";
 
 /**
- * メッシュ内のジオメトリの重心座標を求める。
- * 原点はワールド座標。
+ * Calculate geometry center coordinates in world space.
  *
- * @param mesh
- * @returns {Vector3}
+ * @param mesh - The mesh containing the geometry
+ * @returns The center coordinates in world space
  */
 export function getGeometryCenterInWorld(mesh: Mesh): Vector3 {
   const vec: Vector3 = getGeometryCenterInLocal(mesh);
+  /**
+   * Parent check is required: calling mesh.updateWorldMatrix(true, true) without parent
+   * fails for meshes not added to scene, returning Vector3(0,0,0) instead of expected coordinates.
+   *
+   * Root cause: When parent === null, Three.js uses `matrixWorld.copy(matrix)` but the local
+   * matrix may not be properly initialized/updated, resulting in zero transformation.
+   */
   if (mesh.parent) {
-    mesh.parent.updateMatrixWorld(true);
+    mesh.updateWorldMatrix(true, true);
   }
+
   return vec.applyMatrix4(mesh.matrixWorld);
 }
 
 /**
- * メッシュ内のジオメトリの重心座標を求める。
- * メッシュを原点とする座標を返す。
- * （例えばメッシュ原点を中心とする球体ジオメトリがある場合はVector3(0,0,0)を返す）
+ * Calculate geometry center coordinates in local mesh space.
+ * Returns Vector3(0,0,0) for geometry centered at mesh origin.
  *
- * @param mesh
- * @returns {Vector3}
+ * @param mesh - The mesh containing the geometry
+ * @returns The center coordinates in local mesh space
  */
 export function getGeometryCenterInLocal(mesh: Mesh): Vector3 {
   return getCenter(mesh.geometry);
 }
 
 /**
- * ジオメトリの重心座標を求める。
- * 座標原点はジオメトリを格納するメッシュの原点。
- * @param geo
+ * Calculate geometry bounding box center.
+ *
+ * @param geo - The geometry to analyze
+ * @returns The center coordinates of the bounding box
  */
 export function getCenter(geo: BufferGeometry): Vector3 {
   geo.computeBoundingBox();
@@ -51,12 +66,14 @@ export function getCenter(geo: BufferGeometry): Vector3 {
 }
 
 /**
- * グローバル座標から2Dスクリーン座標を取得する。
- * @param {Vector3} vec
- * @param {Camera} camera
- * @param {number} canvasW
- * @param {number} canvasH
- * @returns {Vector3}
+ * Project 3D world coordinates to 2D screen space.
+ * Origin (0,0) is top-left, (canvasW, canvasH) is bottom-right.
+ *
+ * @param vec - The 3D world coordinates to project
+ * @param camera - The camera used for projection
+ * @param canvasW - The width of the canvas in pixels
+ * @param canvasH - The height of the canvas in pixels
+ * @returns The 2D screen coordinates with z=0
  */
 export function get2DPosition(
   vec: Vector3,
@@ -64,6 +81,7 @@ export function get2DPosition(
   canvasW: number,
   canvasH: number,
 ): Vector3 {
+  camera.updateMatrixWorld();
   const vector = vec.clone().project(camera);
   vector.x = ((vector.x + 1) * canvasW) / 2;
   vector.y = ((-vector.y + 1) * canvasH) / 2;
@@ -73,12 +91,14 @@ export function get2DPosition(
 }
 
 /**
- * メッシュから2Dスクリーン座標を取得する。
- * @param {Mesh} mesh
- * @param {Camera} camera
- * @param {number} canvasW
- * @param {number} canvasH
- * @returns {Vector3}
+ * Project mesh center to 2D screen coordinates.
+ * Useful for positioning UI elements relative to 3D objects.
+ *
+ * @param mesh - The mesh to project
+ * @param camera - The camera used for projection
+ * @param canvasW - The width of the canvas in pixels
+ * @param canvasH - The height of the canvas in pixels
+ * @returns The 2D screen coordinates of the mesh center
  */
 export function get2DPositionWithMesh(
   mesh: Mesh,
@@ -91,30 +111,29 @@ export function get2DPositionWithMesh(
 }
 
 /**
- * 直交座標から三次元極座標の半径を取得する。
- * @param {Vector3} vec
- * @returns {number}
+ * Calculate distance from origin using √(x² + y² + z²).
+ *
+ * @param vec - The Cartesian coordinates
+ * @returns The distance from origin
  */
 export function getROfGlobe(vec: Vector3): number {
   return Math.sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
 }
 
 /**
- * メッシュとジオメトリの位置をずらす。
- * メッシュは移動し、ジオメトリは見かけ上同じ位置を維持する。
+ * Relocate mesh pivot point while maintaining visual position.
+ * Useful for meshes from ObjLoader where geometry origin is (0,0,0),
+ * making rotations and scaling work intuitively.
  *
- * ObjLoaderなどで読み込んだ直後のMeshは、全てGeometryの原点が(0,0,0)になっているため回転や拡大が意図通りに動かない。
- * 中心点を任意の場所にずらすことで操作が容易になる。
- *
- * @param mesh
- * @param pos meshの中心点になる座標
+ * @param mesh - The mesh to reposition
+ * @param pos - New center point coordinates
  */
 export function shiftMesh(mesh: Mesh, pos: Vector3): void {
   const position = pos.clone();
-  //ジオメトリをずらす
+  // Shift the geometry
   mesh.geometry.applyMatrix4(
     new Matrix4().makeTranslation(-position.x, -position.y, -position.z),
   );
-  //メッシュを指定された量ずらす
+  // Move the mesh by the specified amount
   mesh.position.add(position);
 }

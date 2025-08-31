@@ -5,7 +5,7 @@ const W = 1920;
 const H = 1080;
 
 const onDomContentsLoaded = () => {
-  // シーンを作成
+  // Create scene
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(45, W / H, 1, 10000);
   camera.position.set(0, 0, 1000);
@@ -28,7 +28,7 @@ const onDomContentsLoaded = () => {
 
   addMesh(geo, scene, camera, new THREE.Vector3(350, -150, -600));
 
-  //平行光源オブジェクト(light)の設定
+  // Configure ambient light object
   const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
   scene.add(ambientLight);
 
@@ -43,6 +43,6 @@ const addMesh = (geo, scene, camera, pos) => {
 };
 
 /**
- * DOMContentLoaded以降に初期化処理を実行する
+ * Execute initialization process after DOMContentLoaded
  */
 window.onload = onDomContentsLoaded;
