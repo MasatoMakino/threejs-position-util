@@ -37,7 +37,7 @@ npm install @masatomakino/threejs-position-util --save-dev
 
 ### Import
 
-Import the utility functions from the module:
+Import the named exports from the package root:
 
 ```js
 import { 
@@ -47,6 +47,8 @@ import {
   getGeometryCenterInLocal
 } from "@masatomakino/threejs-position-util";
 ```
+
+This package is ESM-only; CommonJS require() is not supported.
 
 ### Primary Functions
 
