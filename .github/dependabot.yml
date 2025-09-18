@@ -5,12 +5,19 @@
 
 version: 2
 updates:
-  - package-ecosystem: "github-actions" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: "github-actions"
+    directory: "/"
     schedule:
       interval: "daily"
+    cooldown:
+      default-days: 5
 
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "daily"
+    cooldown:
+      default-days: 5
+      semver-major-days: 30
+      semver-minor-days: 7
+      semver-patch-days: 3
