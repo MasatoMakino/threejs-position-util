@@ -4,34 +4,34 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Commands
 
-Run every `npm` and `npx` command inside the DevContainer: `devcontainer exec --workspace-folder . <command>`. Git runs on the host.
+Run every `pnpm` command inside the DevContainer: `devcontainer exec --workspace-folder . <command>`. Git runs on the host.
 
 ### Build and Development
 ```bash
-npm run build          # Build TypeScript and generate demo
-npm run buildTS        # Compile TypeScript only
-npm run start:dev      # Start development environment (server + watch modes)
-npm run server         # Start demo server with browser-sync
-npm run watch:tsc      # Watch TypeScript compilation
-npm run watch:demo     # Watch demo generation
+pnpm run build         # Build TypeScript and generate demo
+pnpm run buildTS       # Compile TypeScript only
+pnpm run start:dev     # Start development environment (server + watch modes)
+pnpm run server        # Start demo server with browser-sync
+pnpm run watch:tsc     # Watch TypeScript compilation
+pnpm run watch:demo    # Watch demo generation
 ```
 
 ### Testing
 ```bash
-npm test               # Run tests once
-npm run test:watch     # Run tests in watch mode
-npm run coverage       # Run tests with coverage report
+pnpm test              # Run tests once
+pnpm run test:watch    # Run tests in watch mode
+pnpm run coverage      # Run tests with coverage report
 ```
 
 ### Code Quality
 ```bash
-npx biome check --write  # Lint and format
-npx biome check         # Check without formatting
+pnpm exec biome check --write  # Lint and format
+pnpm exec biome check         # Check without formatting
 ```
 
 ### Demo
 ```bash
-npm run demo           # Generate demo page
+pnpm run demo          # Generate demo page
 ```
 
 ## Architecture
@@ -57,8 +57,8 @@ The library provides static utility functions for:
 - **TypeScript**: Targets ES2021, outputs ES2022 modules to `esm/`
 - **Biome**: Used for linting and formatting (replaces ESLint/Prettier)
 - **Vitest**: Testing with jsdom environment for Three.js compatibility
-- **DevContainer**: `.devcontainer/` runs npm in the `<folder>-npm-runner` container. Install scripts are disabled with `NPM_CONFIG_IGNORE_SCRIPTS`
-- **Git hooks**: `.git/hooks/pre-commit` runs `npm run pre-commit` (Biome format) on staged files in the container. `.git/hooks/pre-push` runs `npm run pre-push` (Biome CI and tests) there
+- **DevContainer**: `.devcontainer/` runs pnpm in the `<folder>-pnpm-runner` container. `pnpm-workspace.yaml` sets the release-age gate, the trust policy, and the allowed build scripts
+- **Git hooks**: `.git/hooks/pre-commit` runs `pnpm run pre-commit` (Biome format) on staged files in the container. `.git/hooks/pre-push` runs `pnpm run pre-push` (Biome CI and tests) there
 - **Demo system**: Uses `@masatomakino/gulptask-demo-page` for interactive examples
 
 ### Dependencies

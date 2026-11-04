@@ -254,4 +254,4 @@ esm/
 
 # Local work notes and development documentation
 .work-notes/
-.claude/settings.local.json
+.claude/settings.local.json.pnpm-store/
