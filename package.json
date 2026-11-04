@@ -2,6 +2,7 @@
   "name": "@masatomakino/threejs-position-util",
   "version": "0.5.1",
   "type": "module",
+  "packageManager": "pnpm@12.16.1",
   "exports": {
     ".": {
       "default": {
@@ -32,7 +33,8 @@
     "browser-sync": "^3.0.2",
     "jsdom": "^26.0.0",
     "three": "^0.183.1",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.3",
+    "vitest": "3.2.4"
   },
   "peerDependencies": {
     "three": ">=0.126.0 <1.0.0"
@@ -42,13 +44,13 @@
     "test:watch": "vitest",
     "coverage": "vitest --run --coverage",
     "pre-commit": "biome format --write --no-errors-on-unmatched --files-ignore-unknown=true",
-    "pre-push": "biome ci . && npm test",
-    "start:dev": "npm run server & npm run watch:tsc & npm run watch:demo",
-    "build": "npm run buildTS && npm run demo",
-    "demo": "npx @masatomakino/gulptask-demo-page --body '<canvas id=\"webgl-canvas\" width=\"1920\" height=\"1080\"></canvas>'",
+    "pre-push": "biome ci . && pnpm test",
+    "start:dev": "pnpm run server & pnpm run watch:tsc & pnpm run watch:demo",
+    "build": "pnpm run buildTS && pnpm run demo",
+    "demo": "gulptask-demo-page --body '<canvas id=\"webgl-canvas\" width=\"1920\" height=\"1080\"></canvas>'",
     "buildTS": "tsc",
     "server": "browser-sync ./docs/demo -w --no-open",
-    "watch:demo": "npm run demo -- -W",
+    "watch:demo": "pnpm run demo -W",
     "watch:tsc": "tsc -W --incremental"
   },
   "description": "measuring geometry positions for three.js",
