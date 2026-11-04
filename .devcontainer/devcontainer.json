@@ -10,7 +10,7 @@
     "--cap-drop=ALL",
     "--name=${localWorkspaceFolderBasename}-pnpm-runner",
     "-p",
-    "127.0.0.1:0:3000"
+    "127.0.0.1:0:3456"
   ],
   "postCreateCommand": "pnpm install --frozen-lockfile",
   "postStartCommand": "pnpm audit --audit-level=moderate || true",
