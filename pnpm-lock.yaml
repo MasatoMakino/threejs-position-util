@@ -188,8 +188,8 @@ importers:
         specifier: ^26.0.0
         version: 26.1.0(supports-color@8.1.1)
       three:
-        specifier: ^0.183.1
-        version: 0.183.1
+        specifier: ^0.186.1
+        version: 0.186.1
       typescript:
         specifier: ^5.5.3
         version: 5.9.3
@@ -1850,8 +1850,8 @@ packages:
     resolution: {integrity: sha512-pFYqmTw68LXVjeWJMST4+borgQP2AyMNbg1BpZh9LbyhUeNkeaPF9gzfPGUAnSMV3qPYdWUwDIjjCLiSDOl7vg==}
     engines: {node: '>=18'}
 
-  three@0.183.1:
-    resolution: {integrity: sha512-Psv6bbd3d/M/01MT2zZ+VmD0Vj2dbWTNhfe4CuSg7w5TuW96M3NOyCVuh9SZQ05CpGmD7NEcJhZw4GVjhCYxfQ==}
+  three@0.186.1:
+    resolution: {integrity: sha512-blFeqb49wRCSGUGj7gtpfnSGHy2lwDk94RhUmS1c/hTby70kvChbWpkJ4Pm1390LqzzvTmzgXKHPEafJwCb8jA==}
 
   tinybench@2.9.0:
     resolution: {integrity: sha512-0+DUvqWMValLmha6lr4kD8iAMK1HzV0/aKnCtWb9v9641TnP/MFb7Pc2bxoxQjTXAErryXVgUOfv2YqNllqGeg==}
@@ -3782,7 +3782,7 @@ snapshots:
       glob: 10.5.0
       minimatch: 9.0.9
 
-  three@0.183.1: {}
+  three@0.186.1: {}
 
   tinybench@2.9.0: {}
 

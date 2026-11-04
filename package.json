@@ -32,7 +32,7 @@
     "@vitest/coverage-istanbul": "^3.0.2",
     "browser-sync": "^3.0.2",
     "jsdom": "^26.0.0",
-    "three": "^0.183.1",
+    "three": "^0.186.1",
     "typescript": "^5.5.3",
     "vitest": "3.2.4"
   },
