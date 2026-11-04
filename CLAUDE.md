@@ -12,9 +12,8 @@ Run every `pnpm` command inside the DevContainer: `devcontainer exec --workspace
 pnpm run build         # Build TypeScript and generate demo
 pnpm run buildTS       # Compile TypeScript only
 pnpm run start:dev     # Start development environment (server + watch modes)
-pnpm run server        # Start demo server with browser-sync
+pnpm run server        # Start the demo dev server (Vite, port 3456)
 pnpm run watch:tsc     # Watch TypeScript compilation
-pnpm run watch:demo    # Watch demo generation
 ```
 
 ### Testing
@@ -35,7 +34,7 @@ pnpm exec biome check         # Check without formatting
 ### Demo
 
 ```bash
-pnpm run demo          # Generate demo page
+pnpm run demo          # Build the demo pages into docs/demo
 ```
 
 ## Architecture
@@ -66,7 +65,7 @@ The library provides static utility functions for:
 - **Vitest**: Testing with jsdom environment for Three.js compatibility
 - **DevContainer**: `.devcontainer/` runs pnpm in the `<folder>-pnpm-runner` container. `pnpm-workspace.yaml` sets the release-age gate, the trust policy, and the allowed build scripts
 - **Git hooks**: `.git/hooks/pre-commit` runs `pnpm run pre-commit` (Biome format) on staged files in the container. `.git/hooks/pre-push` runs `pnpm run pre-push` (Biome CI and tests) there
-- **Demo system**: Uses `@masatomakino/gulptask-demo-page` for interactive examples
+- **Demo system**: `@masatomakino/demo-showcase` (Vite) builds `demoSrc/demo*.js` into `docs/demo/`. `demoSrc/demo.js` imports the compiled `esm/`, so the dev server needs `watch:tsc` (`start:dev` runs both)
 
 ### Dependencies
 
