@@ -11,6 +11,7 @@ import {
 } from "three";
 import { afterEach, beforeEach, describe, expect, test } from "vitest";
 import {
+  get2DPosition,
   get2DPositionWithMesh,
   getGeometryCenterInLocal,
   getGeometryCenterInWorld,
@@ -57,16 +58,10 @@ describe("Three.js Position Utilities", () => {
     shiftMesh(mesh, new Vector3(-10, -10, -10));
     const expectPosition = new Vector3(10, 10, 10);
 
-    /**
-     * Meshes not added to the scene don't have an updated matrixWorld, so the geometry center is returned as-is.
-     * The mesh's own position is ignored.
-     */
+    // Meshes not added to the scene don't have an updated matrixWorld.
     let vec = getGeometryCenterInWorld(mesh);
     expect(vec).toEqual(expectPosition);
 
-    /**
-     * Therefore, moving the mesh position and recalculating yields the same result.
-     */
     mesh.position.set(10, 10, 10);
     vec = getGeometryCenterInWorld(mesh);
     expect(vec).toEqual(expectPosition);
@@ -83,9 +78,6 @@ describe("Three.js Position Utilities", () => {
     scene.add(container);
 
     const vec = getGeometryCenterInLocal(mesh);
-
-    // Ignores parent Object3D movement and mesh movement, getting only geometry center position.
-    // Coordinate reference is the mesh local origin (pivot)
     expect(vec).toEqual(new Vector3(10, 10, 10));
   });
 
@@ -128,5 +120,29 @@ describe("Three.js Position Utilities", () => {
     const rad = getROfGlobe(vec);
 
     expect(rad).toBeCloseTo(spherical.radius, 12);
+  });
+
+  test("shiftMesh moves the pivot by the given offset and keeps the world-space geometry center", () => {
+    // shiftMesh preserves the visual position only for a mesh without rotation and with a scale of 1.
+    const mesh = new Mesh(new SphereGeometry(10));
+    mesh.position.set(5, 5, 5);
+    const container = new Object3D();
+    container.position.set(10, 10, 10);
+    container.add(mesh);
+    scene.add(container);
+    const before = getGeometryCenterInWorld(mesh);
+
+    shiftMesh(mesh, new Vector3(-10, 20, 30));
+
+    expect(mesh.position).toEqual(new Vector3(-5, 25, 35));
+    expect(getGeometryCenterInWorld(mesh).distanceTo(before)).toBeCloseTo(0, 5);
+  });
+
+  test("get2DPosition leaves the input vector unchanged so callers can reuse it", () => {
+    const vec = new Vector3(100, 50, 0);
+
+    get2DPosition(vec, camera, W, H);
+
+    expect(vec).toEqual(new Vector3(100, 50, 0));
   });
 });
