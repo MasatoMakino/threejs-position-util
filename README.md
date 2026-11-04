@@ -84,7 +84,7 @@ const localCenter = getGeometryCenterInLocal(mesh);
 
 All functions return a position as `THREE.Vector3`.
 
-[API documentation](https://masatomakino.github.io/threejs-position-util/api/index.html) | [Demo page](https://masatomakino.github.io/threejs-position-util/demo/)
+[Demo page](https://masatomakino.github.io/threejs-position-util/demo/)
 
 ## License
 
