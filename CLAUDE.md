@@ -4,6 +4,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Commands
 
+Run every `npm` and `npx` command inside the DevContainer: `devcontainer exec --workspace-folder . <command>`. Git runs on the host.
+
 ### Build and Development
 ```bash
 npm run build          # Build TypeScript and generate demo
@@ -23,21 +25,13 @@ npm run coverage       # Run tests with coverage report
 
 ### Code Quality
 ```bash
-npx biome check --write  # Lint and format (used in git hooks)
+npx biome check --write  # Lint and format
 npx biome check         # Check without formatting
 ```
 
-### Documentation
+### Demo
 ```bash
-npm run typedocs       # Generate TypeDoc API documentation
 npm run demo           # Generate demo page
-```
-
-### Release
-```bash
-npm run preversion     # Pre-release checks
-npm run postversion    # Post-release tasks
-npm run release        # Full release process
 ```
 
 ## Architecture
@@ -63,8 +57,8 @@ The library provides static utility functions for:
 - **TypeScript**: Targets ES2021, outputs ES2022 modules to `esm/`
 - **Biome**: Used for linting and formatting (replaces ESLint/Prettier)
 - **Vitest**: Testing with jsdom environment for Three.js compatibility
-- **Husky + lint-staged**: Pre-commit hooks run Biome on staged files
-- **TypeDoc**: Generates API documentation to `docs/api/`
+- **DevContainer**: `.devcontainer/` runs npm in the `<folder>-npm-runner` container. Install scripts are disabled with `NPM_CONFIG_IGNORE_SCRIPTS`
+- **Git hooks**: `.git/hooks/pre-commit` runs `npm run pre-commit` (Biome format) on staged files in the container. `.git/hooks/pre-push` runs `npm run pre-push` (Biome CI and tests) there
 - **Demo system**: Uses `@masatomakino/gulptask-demo-page` for interactive examples
 
 ### Dependencies
