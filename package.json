@@ -26,16 +26,12 @@
   "devDependencies": {
     "@biomejs/biome": "2.2.4",
     "@masatomakino/gulptask-demo-page": "^0.10.0",
-    "@masatomakino/release-helper": "^0.3.2",
     "@types/node": "^25.2.0",
     "@types/three": "^0.183.1",
     "@vitest/coverage-istanbul": "^3.0.2",
     "browser-sync": "^3.0.2",
-    "husky": "^9.0.10",
     "jsdom": "^26.0.0",
-    "lint-staged": "^16.1.0",
     "three": "^0.183.1",
-    "typedoc": "^0.28.0",
     "typescript": "^5.5.3"
   },
   "peerDependencies": {
@@ -45,18 +41,15 @@
     "test": "vitest --run",
     "test:watch": "vitest",
     "coverage": "vitest --run --coverage",
-    "prepare": "husky",
+    "pre-commit": "biome format --write --no-errors-on-unmatched --files-ignore-unknown=true",
+    "pre-push": "biome ci . && npm test",
     "start:dev": "npm run server & npm run watch:tsc & npm run watch:demo",
     "build": "npm run buildTS && npm run demo",
     "demo": "npx @masatomakino/gulptask-demo-page --body '<canvas id=\"webgl-canvas\" width=\"1920\" height=\"1080\"></canvas>'",
     "buildTS": "tsc",
-    "typedocs": "npx typedoc --out ./docs/api src/index.ts",
-    "server": "browser-sync ./docs/demo -w",
+    "server": "browser-sync ./docs/demo -w --no-open",
     "watch:demo": "npm run demo -- -W",
-    "watch:tsc": "tsc -W --incremental",
-    "preversion": "npx @masatomakino/release-helper preversion",
-    "postversion": "npx @masatomakino/release-helper postversion",
-    "release": "npx @masatomakino/release-helper release"
+    "watch:tsc": "tsc -W --incremental"
   },
   "description": "measuring geometry positions for three.js",
   "bugs": {
@@ -66,8 +59,5 @@
   "directories": {
     "doc": "docs",
     "lib": "lib"
-  },
-  "lint-staged": {
-    "*.{js,ts,css,md}": "biome format --write --no-errors-on-unmatched"
   }
 }
