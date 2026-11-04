@@ -124,6 +124,7 @@ export function getROfGlobe(vec: Vector3): number {
  * Relocate mesh pivot point while maintaining visual position.
  * Useful for meshes from ObjLoader where geometry origin is (0,0,0),
  * making rotations and scaling work intuitively.
+ * The visual position stays the same only when the mesh has no rotation and a scale of 1.
  *
  * @param mesh - The mesh to reposition
  * @param pos - New center point coordinates
