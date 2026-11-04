@@ -18,3 +18,13 @@ updates:
       interval: "daily"
     cooldown:
       default-days: 7
+    groups:
+      vite:
+        patterns:
+          - "vite"
+          - "vitest"
+          - "@vitest/*"
+      three:
+        patterns:
+          - "three"
+          - "@types/three"
