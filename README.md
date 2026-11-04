@@ -39,11 +39,11 @@ npm install @masatomakino/threejs-position-util --save-dev
 Import the named exports from the package root:
 
 ```js
-import { 
-  get2DPosition, 
+import {
+  get2DPosition,
   get2DPositionWithMesh,
   getGeometryCenterInWorld,
-  getGeometryCenterInLocal
+  getGeometryCenterInLocal,
 } from "@masatomakino/threejs-position-util";
 ```
 
@@ -54,6 +54,7 @@ This package is ESM-only; CommonJS require() is not supported.
 The main purpose of this library is to convert 3D positions to 2D screen coordinates:
 
 #### `get2DPositionWithMesh(mesh, camera, canvasW, canvasH)`
+
 Convert a mesh's center position directly to 2D screen coordinates. This is the most commonly used function for positioning UI elements over 3D objects.
 
 ```js
@@ -64,6 +65,7 @@ htmlElement.style.top = `${screenPos.y}px`;
 ```
 
 #### `get2DPosition(vec3, camera, canvasW, canvasH)`
+
 Convert any 3D world position to 2D screen coordinates.
 
 ```js
@@ -74,11 +76,12 @@ const screenPos = get2DPosition(worldPosition, camera, 1920, 1080);
 ### Additional Utility Functions
 
 #### Position Calculation
+
 ```js
 // Get mesh center in world coordinates
 const worldCenter = getGeometryCenterInWorld(mesh);
 
-// Get mesh center in local coordinates  
+// Get mesh center in local coordinates
 const localCenter = getGeometryCenterInLocal(mesh);
 ```
 
