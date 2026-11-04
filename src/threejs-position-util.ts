@@ -55,7 +55,7 @@ export function getGeometryCenterInLocal(mesh: Mesh): Vector3 {
  */
 export function getCenter(geo: BufferGeometry): Vector3 {
   geo.computeBoundingBox();
-  const boundingBox = geo.boundingBox;
+  const boundingBox = geo.boundingBox!;
 
   const position = new Vector3();
   position.subVectors(boundingBox.max, boundingBox.min);
