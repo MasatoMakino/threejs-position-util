@@ -34,5 +34,3 @@ jobs:
       - name: Run Biome
         run: pnpm exec biome ci .
       - run: pnpm exec vitest --run
-      - if: false
-        uses: actions/checkout@v7.0.0
