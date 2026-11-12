@@ -39,6 +39,7 @@
     "three": ">=0.126.0 <1.0.0"
   },
   "scripts": {
+    "lint": "biome check .",
     "test": "vitest --run",
     "test:watch": "vitest",
     "coverage": "vitest --run --coverage",
