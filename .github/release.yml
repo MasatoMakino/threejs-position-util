@@ -49,6 +49,7 @@ changelog:
     - title: "🔧 Dependencies"
       labels:
         - dependencies
+        - dependencies-major
       exclude:
         labels:
           - major
