@@ -28,3 +28,10 @@ updates:
         patterns:
           - "three"
           - "@types/three"
+
+  - package-ecosystem: "docker"
+    directory: "/.devcontainer"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 7
