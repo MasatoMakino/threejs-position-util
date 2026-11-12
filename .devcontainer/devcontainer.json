@@ -1,21 +1,33 @@
 {
-  "name": "${localWorkspaceFolderBasename} pnpm Runner",
+  "name": "${localWorkspaceFolderBasename} pnpm Runner (Node 26)",
   "build": {
-    "dockerfile": "Dockerfile"
+    "dockerfile": "Dockerfile",
+    "args": { "WORKSPACE_DIR": "/workspaces/${localWorkspaceFolderBasename}" }
   },
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
+  "initializeCommand": "mkdir -p .claude .vscode node_modules",
+  "mounts": [
+    "source=${localWorkspaceFolder}/.git,target=/workspaces/${localWorkspaceFolderBasename}/.git,type=bind,readonly",
+    "source=${localWorkspaceFolder}/.devcontainer,target=/workspaces/${localWorkspaceFolderBasename}/.devcontainer,type=bind,readonly",
+    "source=${localWorkspaceFolder}/.claude,target=/workspaces/${localWorkspaceFolderBasename}/.claude,type=bind,readonly",
+    "source=${localWorkspaceFolder}/.vscode,target=/workspaces/${localWorkspaceFolderBasename}/.vscode,type=bind,readonly",
+    "source=${localWorkspaceFolder}/CLAUDE.md,target=/workspaces/${localWorkspaceFolderBasename}/CLAUDE.md,type=bind,readonly",
+    "source=${localWorkspaceFolder}/AGENTS.md,target=/workspaces/${localWorkspaceFolderBasename}/AGENTS.md,type=bind,readonly",
+    "source=${localWorkspaceFolder}/.github,target=/workspaces/${localWorkspaceFolderBasename}/.github,type=bind,readonly",
+    "source=${localWorkspaceFolderBasename}-${devcontainerId}-node_modules,target=/workspaces/${localWorkspaceFolderBasename}/node_modules,type=volume"
+  ],
   "remoteUser": "node",
   "runArgs": [
-    "--cap-drop=ALL",
-    "--name=${localWorkspaceFolderBasename}-pnpm-runner",
+    "--cap-add=NET_ADMIN",
+    "--cap-add=NET_RAW",
+    "--name=${localWorkspaceFolderBasename}-pnpm-runner-${devcontainerId}",
     "-p",
     "127.0.0.1:0:3456"
   ],
-  "postCreateCommand": "pnpm install --frozen-lockfile",
-  "postStartCommand": "pnpm audit --audit-level=moderate || true",
+  "postCreateCommand": "sudo /usr/local/bin/init-firewall.sh && pnpm install --frozen-lockfile",
+  "postStartCommand": "sudo /usr/local/bin/init-firewall.sh && (pnpm audit --audit-level=moderate || true)",
   "containerEnv": {
-    "NODE_ENV": "development",
-    "NPM_CONFIG_IGNORE_SCRIPTS": "true"
+    "NODE_ENV": "development"
   }
 }
