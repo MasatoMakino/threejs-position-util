@@ -25,7 +25,7 @@
     "threejs"
   ],
   "devDependencies": {
-    "@biomejs/biome": "2.6.5",
+    "@biomejs/biome": "2.6.6",
     "@masatomakino/demo-showcase": "^0.1.2",
     "@types/node": "^26.6.5",
     "@types/three": "^0.187.0",
